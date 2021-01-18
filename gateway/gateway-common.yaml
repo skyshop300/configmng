@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: webhook
+        uri: http://webhook:8000
+        predicates: 
+        - Path: /greeting/**

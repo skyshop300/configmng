@@ -3,16 +3,17 @@ spring:
     gateway:
       routes:
       - id: webhook
-        uri: http://webhook:8000
+        uri: http://${uri_webhook:webhook.169.56.84.41.nip.io}
         predicates: 
-        - Path=/greeting
+        - Path=/greeting/**
 
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG
-    reactor.netty: DEBUG
 
-management.endpoints.web.exposure.include: '*'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+  endpoint:
+    gateway:
+      enabled: true

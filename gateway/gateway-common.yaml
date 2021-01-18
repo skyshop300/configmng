@@ -3,7 +3,8 @@ spring:
     gateway:
       routes:
       - id: webhook
-        uri: http://${uri_webhook:webhook.169.56.84.41.nip.io}
+        #uri: http://${uri_webhook:webhook.169.56.84.41.nip.io}
+        uri: webhook
         predicates: 
         - Path=/greeting/**
 

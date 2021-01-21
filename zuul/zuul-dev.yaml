@@ -4,6 +4,3 @@ config:
 webhook:
   ribbon: 
     MaxAutoRetriesNextServers: 1  
-zuul:
-  eureka:
-    enabled: false

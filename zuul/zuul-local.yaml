@@ -1,6 +1,6 @@
 ribbon:
   eureka:
-    enabled: true
+    enabled: false
     
 config: 
   ribbon:

@@ -12,3 +12,7 @@ zuul:
       service-id: webhook
       stripPrefix: true
   retryable: true
+
+ribbon:
+  eureka:
+    enabled: false

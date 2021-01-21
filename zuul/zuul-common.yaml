@@ -13,6 +13,6 @@ zuul:
       stripPrefix: true
   retryable: true
 
-#ribbon:
-#  eureka:
-#    enabled: true
+ribbon:
+  eureka:
+    enabled: false

@@ -1,6 +1,6 @@
-ribbon:
-  eureka:
-    enabled: false
+#ribbon:
+#  eureka:
+#    enabled: false
     
 config: 
   ribbon:

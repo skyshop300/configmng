@@ -8,12 +8,13 @@ eureka:
 ribbon:
   eureka:
     enabled: true
-  MaxAutoRetries: 1                 #동일 서비스 연결시도 횟수: 최소 1번 이상으로 지정  
-  MaxAutoRetriesNextServer: 1       #다음 서비스 연결 시도 횟수: 대상 서비스 수 이상으로 지정-서비스별 지정  
+  MaxAutoRetries: 1                 #동일 서비스 연결시도 횟수: (지정수+1)만큼 재시도   
+  MaxAutoRetriesNextServer: 1       #다음 서비스 연결 시도 횟수:(지정수+1)만큼 다음 서비스를 찾으려 재시도   
   OkToRetryOnAllOperations: true    #Retry 사용 여부: Failover하려면 true로 지정 
   ConnectTimeout: 3000             # 서비스별 지정 
   ReadTimeout: 3000                # 서비스별 지정 
   RetryableStatusCodes: 503, 408, 500, 404
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
   # 아래 설정은 eureka 미사용시에만 유효 
   #listOfServers: a.com,b.com
   #ServerListRefreshInterval: 2000

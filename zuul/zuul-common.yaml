@@ -11,6 +11,9 @@ zuul:
       path: /webhook/**
       service-id: webhook
       stripPrefix: true
+    consumer:
+      path: /consumver/**
+      service-id: consumer
   retryable: true
 
 ribbon:

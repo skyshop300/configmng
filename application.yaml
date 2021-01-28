@@ -17,7 +17,6 @@ ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
   # 아래 설정은 eureka 미사용시에만 유효 
   #listOfServers: a.com,b.com
-  #ServerListRefreshInterval: 2000
   
 spring:
   rabbitmq:

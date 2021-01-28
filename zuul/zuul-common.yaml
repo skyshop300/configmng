@@ -14,14 +14,14 @@ zuul:
   retryable: true
 
 ribbon:
-  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.AvailabilityFilteringRule
   NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList 
+  ServerListRefreshInterval: 60000
+  NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter
 
 config:
   ribbon:
     DeploymentContextBasedVipAddresses: config # eureka 등록 이름
-    NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter
 webhook:
   ribbon:
     DeploymentContextBasedVipAddresses: webhook # eureka 등록 이름
-    NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter

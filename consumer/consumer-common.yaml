@@ -1,0 +1,6 @@
+ribbon:
+  ConnectTimeout: 2000             
+  ReadTimeout: 2000                 
+  NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+  ServerListRefreshInterval: 60000
+  NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter

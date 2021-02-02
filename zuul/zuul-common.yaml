@@ -1,7 +1,7 @@
 zuul:
   host:
-    connect-timeout-millis: 2000
-    socket-timeout-millis: 2000
+    connect-timeout-millis: 1000
+    socket-timeout-millis: 1000
   routes:      
     config:
       path: /config/**

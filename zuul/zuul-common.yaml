@@ -50,7 +50,7 @@ hystrix:
     default: 
       execution: 
         isolation: 
-          #strategy: THREAD
+          strategy: THREAD
           thread: 
             timeoutInMiliseconds: 500  # hystrix가 적용된 메소드는 이 시간안에 응답이 없으면, fallback method를 호출(default: 1000ms)
       metrics:
@@ -64,5 +64,6 @@ hystrix:
     consumer:
       execution:
         isolation:
+          strategy: THREAD
           thread:
             timeoutInMiliseconds: 500

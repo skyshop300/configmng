@@ -53,8 +53,8 @@ hystrix:
       execution: 
         isolation: 
           strategy: THREAD
-          thread: 
-            timeoutInMiliseconds: 500
+          #thread: 
+          #  timeoutInMiliseconds: 500  $ribbon과 같이 사용시 동작 안함(ribbon.ConnecTimeout과 ReadTimeout사용해야 함)
       metrics:
         rollingStats: 
           timeInMilliseconds: 10000   
@@ -63,9 +63,11 @@ hystrix:
         requestVolumeThreshold: 1      
         errorThresholdPercentage: 50   
         sleepWindowInMiliseconds: 5000 
-    consumer:
-      execution:
-        isolation:
-          thread:
-            timeoutInMiliseconds: 500
-            
+---
+spring:
+  sleuth: 
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://zipkin:9411
+        

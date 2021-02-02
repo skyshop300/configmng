@@ -21,3 +21,10 @@ hystrix:
         requestVolumeThreshold: 3      # circuit breaker 오픈 여부를 판단할 최소 request 수(default: 20)
         errorThresholdPercentage: 50   # circuit breaker 오픈 여부를 판단할 실패 횟수(default: 50%)
         sleepWindowInMiliseconds: 5000 # circuit breaker 지속 시간(default: 5000ms)
+---
+spring:
+  sleuth: 
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://zipkin:9411

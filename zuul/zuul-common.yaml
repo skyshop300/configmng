@@ -55,10 +55,10 @@ hystrix:
             timeoutInMiliseconds: 500  # hystrix가 적용된 메소드는 이 시간안에 응답이 없으면, fallback method를 호출(default: 1000ms)
       metrics:
         rollingStats: 
-          timeInMilliseconds: 50000    # 성공/실패 통계 집계 시간(default: 10000ms) 
+          timeInMilliseconds: 10000    # 성공/실패 통계 집계 시간(default: 10000ms) 
       circuitBreaker: 
         enabled: true
-        requestVolumeThreshold: 3      # circuit breaker 오픈 여부를 판단할 최소 request 수(default: 20)
+        requestVolumeThreshold: 1      # circuit breaker 오픈 여부를 판단할 최소 request 수(default: 20)
         errorThresholdPercentage: 50   # circuit breaker 오픈 여부를 판단할 실패 횟수(default: 50%)
         sleepWindowInMiliseconds: 5000 # circuit breaker 지속 시간(default: 5000ms)
     consumer:

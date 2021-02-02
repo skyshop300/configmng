@@ -60,7 +60,7 @@ hystrix:
           timeInMilliseconds: 10000   
       circuitBreaker: 
         enabled: true
-        requestVolumeThreshold: 5      
+        requestVolumeThreshold: 1      
         errorThresholdPercentage: 50   
         sleepWindowInMiliseconds: 5000 
     consumer:

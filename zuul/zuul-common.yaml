@@ -1,7 +1,7 @@
 zuul:
   host:
-    connect-timeout-millis: 500
-    socket-timeout-millis: 500
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
   routes:      
     config:
       path: /config/**
@@ -35,8 +35,8 @@ webhook:
     DeploymentContextBasedVipAddresses: webhook # eureka 등록 이름
 consumer:
   ribbon:
-    ConnectTimeout: 2000 
-    ReadTimeout: 2000      
+    ConnectTimeout: 1000 
+    ReadTimeout: 1000      
 
 hystrix:
   threadpool: 

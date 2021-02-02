@@ -52,7 +52,7 @@ hystrix:
         isolation: 
           strategy: THREAD
           thread: 
-            timeoutInMiliseconds: 2000  # hystrix가 적용된 메소드는 이 시간안에 응답이 없으면, fallback method를 호출(default: 1000ms)
+            timeoutInMiliseconds: 500  # hystrix가 적용된 메소드는 이 시간안에 응답이 없으면, fallback method를 호출(default: 1000ms)
       metrics:
         rollingStats: 
           timeInMilliseconds: 50000    # 성공/실패 통계 집계 시간(default: 10000ms) 

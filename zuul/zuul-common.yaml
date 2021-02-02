@@ -33,7 +33,10 @@ config:
 webhook:
   ribbon:
     DeploymentContextBasedVipAddresses: webhook # eureka 등록 이름
-    
+consumer:
+  ribbon:
+    ConnectTimeout: 1000 
+    ReadTimeout: 1000      
 
 hystrix:
   threadpool: 

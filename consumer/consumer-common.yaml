@@ -5,4 +5,4 @@ ribbon:
   ServerListRefreshInterval: 60000
   NIWSServerListFilterClassName: com.netflix.loadbalancer.ServerListSubsetFilter
 
-sleeptime: 15000
+sleeptime: 1500

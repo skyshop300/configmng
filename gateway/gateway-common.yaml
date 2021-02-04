@@ -63,6 +63,6 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/host/**
-    - Host=^gateway.*, **.myorg.com  #only from host which start 'gateway'
+    - Host=gateway.**, **.myorg.com  
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

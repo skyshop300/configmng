@@ -31,7 +31,15 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/hystrix-producer/(?<segment>.*), /$\{segment}  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
-
     
 ---
-
+# Cookie
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-event 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/cookie/**
+    #- Cookie=LTPAToken,* 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass

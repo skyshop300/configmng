@@ -10,26 +10,26 @@ spring.cloud.gateway:
   - id: hystrix-producer-event 
     uri: lb://hystrix-producer
     predicates:
-    - Path=/hystrix-producer/v?/**
+    - Path=/hystrix-producer/**
     - Between=2021-02-04T00:00:00+09:00[Asia/Seoul],2021-02-04T23:59:59+09:00[Asia/Seoul]
     filters:
     - RewritePath=/hystrix-producer/v?/(?<segment>.*), /coffees/delay  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
 
-  - id: hystrix-producer-v1
+  - id: hystrix-producer-old
     uri: lb://hystrix-producer
     predicates: 
     - Path=/api/coffees/**
     - Before=2020-12-31T23:59:59+09:00[Asia/Seoul]
 
-  - id: hystrix-producer-v2
-    # ex) /hystrix-producer/v2/coffees/pass => <uri>/api/coffees/pass
+  - id: hystrix-producer-new
+    # ex) /hystrix-producer/coffees/pass => <uri>/api/coffees/pass
     uri: lb://hystrix-producer
     predicates:
-    - Path=/hystrix-producer/v2/**
+    - Path=/hystrix-producer/**
     - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
     filters:
-    - RewritePath=/hystrix-producer/v2/(?<segment>.*), /$\{segment}  # Rewrite rule
+    - RewritePath=/hystrix-producer/(?<segment>.*), /$\{segment}  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
 
     

@@ -88,3 +88,14 @@ spring.cloud.gateway:
     - Query=param, ^pass$   # param값이 정확히 pass일때만 routing 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
+--- 
+# Request Remote Address
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-remoteaddr 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/remoteaddr/**
+    - RemoteAddr=169.56.1.1/24  
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass

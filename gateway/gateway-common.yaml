@@ -4,18 +4,23 @@ spring:
       ribbon:
         enabled: false        
 ---
+# Before, After, Between
 spring.cloud.gateway:
   routes: 
-  - id: webhook-v1
-    uri: ${uri_webhook:http://localhost:8000}
+  - id: hystrix-producer-v1
+    uri: lb://hystrix-producer
     predicates: 
-    - Path=/greeting/**
-    - Before=2020-12-31T23:59:59+09:00[Asia/Seoul]
-  - id: webhook-v2
-    uri: ${uri_webhook:http://localhost:8000}
+    - Path=/api/coffees/**
+    #- Before=2020-12-31T23:59:59+09:00[Asia/Seoul]
+  - id: hystrix-producer-v2
+    # ex) /hystrix-producer/
+    uri: lb://hystrix-producer
     predicates:
-    - Path=/webhook/**
-    - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
+    - Path=/hystrix-producer/v2/**
+    #- After=2021-01-01T00:00:00+09:00[Asia/Seoul]
     filters:
-    - RewritePath=/webhook/(?<segment>.*), /$\{segment}
-    
+    - RewritePath=/hystrix-producer/v2/(?<segment>.*), /$\{segment}
+    - PrefixPath=/api
+
+---
+

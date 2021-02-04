@@ -52,6 +52,6 @@ spring.cloud.gateway:
     predicates:
     - Path=/header/**
     #- Header=User-Agent,(?Chrome.*)
-    - Header=Host, *
+    - Header=X-Request-Id, \d+
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

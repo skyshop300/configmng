@@ -89,13 +89,20 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 --- 
-# Request Remote Address
+# Weight for canari deploy
 spring.cloud.gateway:
   routes: 
-  - id: hystrix-producer-remoteaddr 
+  - id: hystrix-producer-v1 
     uri: lb://hystrix-producer
     predicates:
-    - Path=/remoteaddr/**
-    - RemoteAddr=169.56.84.1/16 
+    - Path=/v1/**
+    - Weight=group1, 8 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/no-pass
+  - id: hystrix-producer-v2
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/v2/**
+    - Weight=group1, 2
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

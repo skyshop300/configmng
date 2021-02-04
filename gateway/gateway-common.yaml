@@ -6,6 +6,7 @@ spring:
         uri: ${uri_webhook:http://localhost:8000}
         predicates: 
         - Path=/greeting/**
+        - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
     loadbalancer:
       ribbon:
         enabled: false        

@@ -43,3 +43,14 @@ spring.cloud.gateway:
     - Cookie=LTPAToken,* 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
+--- 
+# Request Header
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-event 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/header/**
+    - Header=User-Agent,(?Chrome.*)
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass

@@ -96,13 +96,13 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/weight/**
-    - Weight=group1, 8 
+    - Weight=group1, 6 
     filters: 
     - RewritePath=/(.*), /api/coffees/no-pass
   - id: hystrix-producer-v2
     uri: lb://hystrix-producer
     predicates:
     - Path=/weight/**
-    - Weight=group1, 2
+    - Weight=group1, 4
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

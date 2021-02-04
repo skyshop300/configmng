@@ -36,7 +36,7 @@ spring.cloud.gateway:
 # Cookie
 spring.cloud.gateway:
   routes: 
-  - id: hystrix-producer-event 
+  - id: hystrix-producer-cookie
     uri: lb://hystrix-producer
     predicates:
     - Path=/cookie/**
@@ -47,7 +47,7 @@ spring.cloud.gateway:
 # Request Header
 spring.cloud.gateway:
   routes: 
-  - id: hystrix-producer-event 
+  - id: hystrix-producer-header 
     uri: lb://hystrix-producer
     predicates:
     - Path=/header/**
@@ -59,10 +59,21 @@ spring.cloud.gateway:
 # Request Host
 spring.cloud.gateway:
   routes: 
-  - id: hystrix-producer-event 
+  - id: hystrix-producer-host 
     uri: lb://hystrix-producer
     predicates:
     - Path=/host/**
     - Host=gateway.**, **.myorg.com   #not regrexp, but Ant-style pattern(?, *. **).
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass
+---
+# Request Method
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-method 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/method/**
+    - Method=Get,POST
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

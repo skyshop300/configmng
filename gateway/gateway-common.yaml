@@ -77,3 +77,14 @@ spring.cloud.gateway:
     - Method=Get,POST   # only allow Get, POST.
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
+--- 
+# Request Query
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-query 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/query/**
+    - Query=param, ^pass$   # param값이 정확히 pass일때만 routing 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass

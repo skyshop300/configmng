@@ -14,5 +14,8 @@ spring.cloud.gateway:
   - id: webhook-v2
     uri: ${uri_webhook:http://localhost:8000}
     predicates:
-    - Path=/webhook/**
+    - Path=/webhook/{segment}
     - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
+    filters:
+    - SetPath=/{segment}
+    

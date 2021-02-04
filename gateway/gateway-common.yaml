@@ -74,6 +74,6 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/method/**
-    - Method=Get,POST
+    - Method=Get,POST   # only allow Get, POST.
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

@@ -51,6 +51,6 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/header/**
-    - Header=User-Agent,(?Chrome.*)
+    #- Header=User-Agent,(?Chrome.*)
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

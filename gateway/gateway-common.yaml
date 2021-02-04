@@ -40,6 +40,6 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/cookie/**
-    #- Cookie=LTPAToken,* 
+    - Cookie=LTPAToken,* 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

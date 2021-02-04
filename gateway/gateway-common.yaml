@@ -96,6 +96,6 @@ spring.cloud.gateway:
     uri: lb://hystrix-producer
     predicates:
     - Path=/remoteaddr/**
-    - RemoteAddr=169.56.1.1/24  
+    - RemoteAddr=169.56.0.1/16  
     filters: 
     - RewritePath=/(.*), /api/coffees/pass

@@ -6,6 +6,8 @@ spring:
 ---
 spring.cloud.gateway:
   routes: 
+
+# ======== Predigates factories ============
   - id: hystrix-producer-event 
     uri: lb://hystrix-producer
     predicates:
@@ -88,7 +90,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 
-#========== Gateway filters ============== 
+#========== GatewayFilter factories ============== 
 
 # Request Header: Add
   - id: consumer-addreqheader
@@ -96,7 +98,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/addreqheader/**
     filters:
-    #- AddRequestHeader=X-Req-greeting, Hello
+    - AddRequestHeader=X-Req-greeting, Hello
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
 
 

@@ -126,7 +126,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/rmreqheader/{rmheader}
     filters:
-    - RewritePath=/[^/]/(?<header>.*), /greeting/${header}
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
     - AddRequestHeader=x-removed-header, {rmheader}
     - RemoveRequestHeader=x-removed-header
     
@@ -136,7 +136,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/addresheader/{header}
     filters: 
-    - RewritePath=/[^/]/(?<header>.*), /greeting/${header}
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
     - AddResponseHeader=x-resheader-create, {header}
 
 # Response Header: Update
@@ -146,7 +146,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setcontenttype/{content-type}
     filters: 
-    - RewritePath=/[^/]/(?<type>.*), /greeting/${type}
+    - RewritePath=/.*/(?<type>.*), /greeting/${type}
     - SetResponseHeader=Content-Type, {content-type}
 
     

@@ -120,7 +120,7 @@ spring.cloud.gateway:
     - SetRequestHeader=cache-control, {cache-control}
 
 # Request Header: Delete
-  # /rmreqheader/host
+  # /rmreqheader/x-removed-header
   - id: consumer-reqheader-delete 
     uri: lb://consumer 
     predicates:
@@ -128,7 +128,7 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/rmreqheader/(?<header>.*), /greeting/${header}
     - AddRequestHeader=x-removed-header, {rmheader}
-    #- RemoveRequestHeader={rmheader}
+    - RemoveRequestHeader=x-removed-header
     
 
 

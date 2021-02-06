@@ -93,10 +93,18 @@ spring.cloud.gateway:
 #========== GatewayFilter factories ============== 
 
 # Request Header: Add
-  - id: consumer-addreqheader
+  - id: consumer-addreqheader 
     uri: lb://consumer
     predicates:
-    - Path=/addreqheader/{greeting}
+    - Path=/addreqheader/**
+    filters:
+    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg}
+    - AddRequestHeader=x-req-msg, Happy
+
+  - id: consumer-addreqheader2
+    uri: lb://consumer
+    predicates:
+    - Path=/addreqheader2/{greeting}
     filters:
     - AddRequestHeader=x-req-msg, {greeting}
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 

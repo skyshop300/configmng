@@ -127,8 +127,8 @@ spring.cloud.gateway:
     - Path=/rmreqheader/{rmheader}
     filters:
     - RewritePath=/rmreqheader/(?<header>.*), /greeting/${header}
-    - RemoveRequestHeader={rmheader}
-    - RenoveRequestHeader=host 
+    - AddRequestHeader=x-removed-header, {rmheader}
+    #- RemoveRequestHeader={rmheader}
     
 
 

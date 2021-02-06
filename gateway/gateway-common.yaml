@@ -209,5 +209,5 @@ spring.cloud.gateway:
     predicates: 
     - Path=/fallback/**
     filters:
-    - RewritePath=/.*/(?<param>.*), /hystrix/${param} 
-    
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+

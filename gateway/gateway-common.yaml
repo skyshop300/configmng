@@ -28,7 +28,7 @@ spring.cloud.gateway:
     - Path=/hystrix-producer/**
     - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
     filters:
-    - RewritePath=/hystrix-producer/(^<api-uri>.*), /${api-uri}  # Rewrite rule
+    - RewritePath=/hystrix-producer/(*<api-uri>.*), /${api-uri}  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
     
 # Predicates: Cookie

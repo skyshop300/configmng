@@ -146,7 +146,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setcontenttype/{content-type}
     filters: 
-    - RewritePath=/.*/(?<type>.*), /greeting/${type}
+    - RewritePath=/setcontenttype/(?<type>.*), /greeting/${type}
     - SetResponseHeader=Content-Type, {content-type}
 
 

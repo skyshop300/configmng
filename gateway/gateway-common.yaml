@@ -90,8 +90,8 @@ spring.cloud.gateway:
 ---
 # Gateway filters 
 
-spring.cloud.gateway:
-  routes: 
+#spring.cloud.gateway:
+#  routes: 
 # Request Header: Add, Update, Delete
   - id: consumer-addreqheader
     uri: lb://consumer

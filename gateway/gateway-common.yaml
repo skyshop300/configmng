@@ -87,7 +87,7 @@ spring.cloud.gateway:
     - Weight=group1, 4
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
----
+
 #========== Gateway filters ============== 
 
 # Request Header: Add

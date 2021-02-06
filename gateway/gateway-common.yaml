@@ -260,7 +260,8 @@ spring.cloud.gateway:
     - SetPath=/{api}/{param}
 ---
 # ===== Default filters ========
-# Try /setpath/hystrix/pass and /setpath/hystrix/nopass . Watch console of consumer-0
+# Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
+# Try /setpath/hystrix/nopass to test circuit breaker.
 spring.cloud.gateway:
   default-filters: 
   - AddRequestHeader=x-serviceid, spring-gateway 

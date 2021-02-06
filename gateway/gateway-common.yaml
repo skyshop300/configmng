@@ -244,9 +244,9 @@ spring.cloud.gateway:
   - id: redirect-to
     uri: lb://consumer 
     predicates:
-    - Path=/redirect/{url}
+    - Path=/redirect-to/{domain}
     filters:
-    - RedirectTo=302, http://www.naver.com
+    - RedirectTo=302, http://{domain}
 
 
 

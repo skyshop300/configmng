@@ -203,7 +203,9 @@ spring.cloud.gateway:
     - RemoveRequestParameter=svc 
     - AddRequestParameter=svc, consumer 
 
-# Fallback
+# Fallback 
+  # /fallback/nopass 
+  # add dependency 'spring-cloud-starter-circuitbreaker-reactor-resilience4j'
   - id: hystrix-consumer-fallback
     uri: lb://hystrix-consumer 
     predicates: 
@@ -220,5 +222,15 @@ spring.cloud.gateway:
     - Path=/myfallback 
     filters: 
     - RewritePath=/.*, /actuator 
-    
+
+# PrefixPath
+  - id: prefixpath
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/prefixpath/**
+    filters: 
+    - RewritePath=/.*/(?<msg>.*), /coffees/pass 
+    - PrefixPath=/api 
+  
+
 

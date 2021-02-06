@@ -246,7 +246,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/redirect/{url}
     filters:
-    - RedirectTo=302, {url}
+    - RedirectTo=302, http://google.com
 
 
 

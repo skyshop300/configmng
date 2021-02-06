@@ -172,7 +172,7 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
   
   - id: gateway-reqparam-create
-    uri: http://gateway.169.56.84.41.nip.io
+    uri: lb://gateway
     predicates:
     - Path=/addreqparam/**
     filters:
@@ -182,7 +182,7 @@ spring.cloud.gateway:
 
 # Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
   - id: consumer-reqparam-update 
-    uri: http://gateway.169.56.84.41.nip.io
+    uri: lb://gateway
     predicates: 
     - Path=/setreqparam/**
     - Query=api, ^greeting$   
@@ -193,7 +193,7 @@ spring.cloud.gateway:
 
 # Request Parameter: Delete 
   - id: consumer-reqparam-delete 
-    uri: http://gateway.169.56.84.41.nip.io
+    uri: lb://gateway
     predicates: 
     - Path=/rmreqparam/** 
     - Query=svc, webhook  
@@ -217,7 +217,7 @@ spring.cloud.gateway:
         name: myfallback
         fallbackUri: forward:/myfallback
   - id: myfallback 
-    uri: http://gateway.169.56.84.41.nip.io
+    uri: lb://gateway
     predicates: 
     - Path=/myfallback 
     filters: 
@@ -240,5 +240,11 @@ spring.cloud.gateway:
     filters: 
     - StripPrefix=1 
 
+# RedirctTo 
+  - id: redirect-to
+    uri: http://go.daum.net
+    filters:
+    - RedirectTo=301, http://www.daum.net 
+    
 
 

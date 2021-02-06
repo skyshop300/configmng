@@ -157,6 +157,7 @@ spring.cloud.gateway:
     - Path=/rmresheader/{header}
     filters:
     - RewritePath=/rmresheader/(?<msg>.*), /greeting/${msg} 
+    - AddResponseHeader=x-resheader-removed, {header}
     - RemoveResponseHeader={header} 
-    
+
 

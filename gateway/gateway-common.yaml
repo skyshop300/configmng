@@ -88,17 +88,15 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 ---
-# Gateway filters 
+#========== Gateway filters ============== 
 
-#spring.cloud.gateway:
-#  routes: 
 # Request Header: Add, Update, Delete
   - id: consumer-addreqheader
     uri: lb://consumer
     predicates:
-    - Path=/addreqheader/**
+    - Path=/addreqheader/{greeting}
     filters:
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
-    #- AddRequestHeader= 
+    - AddRequestHeader=X-req-greeting, {greeting}
 
 

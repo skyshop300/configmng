@@ -198,7 +198,8 @@ spring.cloud.gateway:
     predicates: 
     - Path=/rmreqparam/** 
     - Query=svc, consumer 
-    - Query=api, greeting 
+    - Query=api, greeting
+    - Query=dummy, hello  
     filters: 
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
-    
+

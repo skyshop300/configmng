@@ -72,5 +72,5 @@ spring:
     base-url: http://zipkin:9411
     
 management.endpoints.web.exposure.include: prometheus
-
+management.endpoints.web.exposure.include: *  
         

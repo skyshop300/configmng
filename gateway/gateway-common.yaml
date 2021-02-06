@@ -156,9 +156,14 @@ spring.cloud.gateway:
     predicates: 
     - Path=/rmresheader/{header}
     filters:
-    - RewritePath=/rmresheader/(?<msg>.*), /greeting/${msg}
+    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg}
     - AddResponseHeader={header} 
     - AddResponseHeader=x-resheader-removed, {header}
     - RemoveResponseHeader={header}
 
-
+# Request Parameter: Create
+  # /addreqparam/
+  #- id: gateway-routes-by-param
+  #  uri: http://gateway.169.56.84.41
+  #  predicates: 
+  #  - Path: /addreqparam/

@@ -190,7 +190,7 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
     - AddRequestParameter=svc, consumer
-    - AddRequestParameter=api, greeting 
+    #- AddRequestParameter=api, greeting 
 
 # Request Parameter: Delete 
   - id: consumer-reqparam-delete 
@@ -203,4 +203,4 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
     - RemoveRequestParameter=svc 
     - AddRequestParameter=svc, consumer 
-     
+

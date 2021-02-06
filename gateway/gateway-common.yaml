@@ -94,7 +94,7 @@ spring.cloud.gateway:
   - id: consumer-addreqheader
     uri: lb://consumer
     predicates:
-    - Path=/addreqheader/{greeting}
+    - Path=/addreqheader/**
     filters:
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
     - AddRequestHeader=X-Req-greeting, Hello

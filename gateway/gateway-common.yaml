@@ -242,9 +242,11 @@ spring.cloud.gateway:
 
 # RedirctTo 
   - id: redirect-to
-    uri: http://go.daum.net
+    uri: lb://consumer 
+    predicates:
+    - Path=/redirect-to/{url}
     filters:
-    - RedirectTo=301, http://www.daum.net 
-    
+    - RedirectTo=301, {url}
+
 
 

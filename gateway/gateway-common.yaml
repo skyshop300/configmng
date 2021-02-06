@@ -28,7 +28,7 @@ spring.cloud.gateway:
     - Path=/hystrix-producer/**
     - After=2021-01-01T00:00:00+09:00[Asia/Seoul]
     filters:
-    - RewritePath=/hystrix-producer/(?<apiuri>.*), /${apiuri}  # 그룹갭처 '(?<group>pattern)'
+    - RewritePath=/hystrix-producer/(?<apiuri>.*), /${apiuri}  # 그룹갭처 '(?<group>pattern)', group명에 특수문자 쓰지 않기 
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
     
 # Predicates: Cookie
@@ -88,3 +88,17 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 ---
+# Gateway filters 
+
+spring.cloud.gateway:
+  routes: 
+# Request Header: Add, Update, Delete
+  - id: consumer-addreqheader
+    uri: lb://consumer
+    predicates:
+    - Path=/addreqheader/**
+    filters:
+    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
+    #- AddRequestHeader= 
+
+

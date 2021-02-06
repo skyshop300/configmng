@@ -163,12 +163,12 @@ spring.cloud.gateway:
 
 # Request Parameter: Create
   # /addreqparam/
-  - id: gateway-routes-by-param
+  - id: gateway-routes-by-query
     uri: lb://consumer
     predicates: 
     - Path=/webhook/**
     #- Query=svc, ^webhook$
-    - Query=api, ^greeting$
+    #- Query=api, ^greeting$
     filters: 
     - RewritePath=/[^/]/(?<msg>.*), /greeting/Hello
 

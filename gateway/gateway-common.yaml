@@ -150,7 +150,7 @@ spring.cloud.gateway:
     - SetResponseHeader=Content-Type, {content-type}
 
 # Response Header: Delete
-  # /rmheader/Content-Type
+  # /rmheader/omyheader
   - id: consumer-resheader-delete
     uri: lb://consumer 
     predicates: 

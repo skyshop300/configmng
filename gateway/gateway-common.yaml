@@ -116,7 +116,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setreqheader/{cache-control} 
     filters: 
-    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
+    - RewritePath=/setreqheader/(?<msg>.*), /greeting/${msg} 
     - SetRequestHeader=cache-control, {cache-control}
 
 

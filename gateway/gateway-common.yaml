@@ -170,6 +170,6 @@ spring.cloud.gateway:
     #- Query=svc, ^webhook$
     - Query=api, ^greeting$
     filters: 
-    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg}
+    - RewritePath=/[^/]/(?<msg>.*), /greeting/Hello
 
     

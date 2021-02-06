@@ -255,9 +255,9 @@ spring.cloud.gateway:
   - id: setpath 
     uri: lb://consumer
     predicates:
-    - Path=/setpath/{path}
+    - Path=/setpath/{api}/{param}
     filters:
-    - SetPath=/{path}/pass
+    - SetPath=/{api}/{param}
     
 
 

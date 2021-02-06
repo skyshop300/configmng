@@ -265,10 +265,7 @@ spring.cloud.gateway:
 spring.cloud.gateway:
   default-filters: 
   - AddRequestHeader=x-serviceid, spring-gateway 
-  - name: CircuitBreaker
-    args: 
-      name: default-fallback 
-      fallbackUri: forward:/myfallback 
+  
 
 
   

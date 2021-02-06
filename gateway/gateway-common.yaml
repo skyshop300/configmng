@@ -16,3 +16,4 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/hystrix-producer/(?<segment>.*), /$\{segment}  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
+

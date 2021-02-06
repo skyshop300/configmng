@@ -1,3 +1,4 @@
 hystrix:
   dashboard:
-    proxy-stream-allow-list: "localhost,hystrix-consumer,turbine,zuul"
+    proxy-stream-allow-list: "localhost,hystrix-consumer,turbine,zuul,gateway"
+    

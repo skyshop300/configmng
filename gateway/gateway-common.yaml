@@ -166,7 +166,7 @@ spring.cloud.gateway:
   - id: gateway-routes-by-param
     uri: lb://consumer
     predicates: 
-    - Path=/routes/**
+    - Path=/webhook/**
     #- Query=svc, ^webhook$
     - Query=api, ^greeting$
     filters: 

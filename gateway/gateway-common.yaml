@@ -257,7 +257,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setpath/{path}
     filters:
-    - SetPath=/{path}
+    - SetPath=/{path}/pass
     
 
 

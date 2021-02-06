@@ -32,10 +32,7 @@ spring.cloud.gateway:
     - RewritePath=/hystrix-producer/(?<segment>.*), /$\{segment}  # Rewrite rule
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
     
----
 # Predicates: Cookie
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-cookie
     uri: lb://hystrix-producer
     predicates:
@@ -43,10 +40,7 @@ spring.cloud.gateway:
     - Cookie=LTPAToken,* 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
---- 
 # Predicates: Header
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-header 
     uri: lb://hystrix-producer
     predicates:
@@ -55,10 +49,7 @@ spring.cloud.gateway:
     - Header=Host, ^gateway.*         #only from host which start 'gateway' 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
----
 # Predicates: Host
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-host 
     uri: lb://hystrix-producer
     predicates:
@@ -66,10 +57,7 @@ spring.cloud.gateway:
     - Host=gateway.**, **.myorg.com   #not regrexp, but Ant-style pattern(?, *. **).
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
----
 # Predicates: Method
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-method 
     uri: lb://hystrix-producer
     predicates:
@@ -77,10 +65,7 @@ spring.cloud.gateway:
     - Method=Get,POST   # only allow Get, POST.
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
---- 
 # Predicates: Query
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-query 
     uri: lb://hystrix-producer
     predicates:
@@ -88,10 +73,7 @@ spring.cloud.gateway:
     - Query=param, ^pass$   # param값이 정확히 pass일때만 routing 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
---- 
 # Predicates: Weight -> use it for canari deploy
-spring.cloud.gateway:
-  routes: 
   - id: hystrix-producer-v1 
     uri: lb://hystrix-producer
     predicates:
@@ -106,13 +88,10 @@ spring.cloud.gateway:
     - Weight=group1, 4
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
----
 
 # Gateway filters 
----
+
 # Request Header: Add, Update, Delete
-spring.cloud.gateway:
-  routes: 
   - id: consumer-addreqheader
     uri: lb://consumer
     predicates:

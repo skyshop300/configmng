@@ -138,6 +138,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/addresheader/(?<header>.*), /greeting/${header}
     - AddResponseHeader=x-resheader-create, {header}
+    - SetResponseHeader=Content-Type, text/plain;charset=UTF-8
 
 # Response Header: Update
 

@@ -210,4 +210,15 @@ spring.cloud.gateway:
     - Path=/fallback/**
     filters:
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: myfallback
+        fallbackUri: forward:/myfallback
+  - id: myfallback 
+    uri: http://gateway.169.56.84.41.nip.io
+    predicates: 
+    - Path=/myfallback 
+    filters: 
+    - RewritePath=/.*, /actuator 
+    
 

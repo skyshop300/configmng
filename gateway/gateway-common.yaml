@@ -93,6 +93,7 @@ spring.cloud.gateway:
 #========== GatewayFilter factories ============== 
 
 # Request Header: Create
+  # watch console of consumer-0 POD 
   - id: consumer-reqheader-create 
     uri: lb://consumer
     predicates:
@@ -246,8 +247,18 @@ spring.cloud.gateway:
     predicates:
     - Path=/redirect
     filters:
-    #- RedirectTo=302, http://{domain}
-    - RedirectTo=302, http://google.com
+    #- RedirectTo=302, http://{domain}   # 변수 받는건 안됨
+    - RedirectTo=302, http://google.com  
 
+
+  # watch console of consumer-0 POD 
+  - id: secure-headers 
+    uri: lb://consumer
+    predicates:
+    - Path=/secureheaders
+    filters:
+    - RewritePath=/.*, /greeting/SecureHeaders
+    - SecureHeaders
+    
 
 

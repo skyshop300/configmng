@@ -107,7 +107,7 @@ spring.cloud.gateway:
     - Path=/addreqheader2/{greeting}
     filters:
     - AddRequestHeader=x-req-msg, {greeting}
-    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
+    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg} 
   
 # Request Header: Update
   # /setreqheader/max-age=86400
@@ -116,7 +116,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setreqheader/{cache-control} 
     filters: 
-    - RewritePath=/setreqheader/(?<msg>.*), /greeting/${msg} 
+    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg} 
     - SetRequestHeader=cache-control, {cache-control}
 
 # Request Header: Delete
@@ -126,7 +126,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/rmreqheader/{rmheader}
     filters:
-    - RewritePath=/rmreqheader/(?<header>.*), /greeting/${header}
+    - RewritePath=/[^/]/(?<header>.*), /greeting/${header}
     - AddRequestHeader=x-removed-header, {rmheader}
     - RemoveRequestHeader=x-removed-header
     
@@ -136,7 +136,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/addresheader/{header}
     filters: 
-    - RewritePath=/addresheader/(?<header>.*), /greeting/${header}
+    - RewritePath=/[^/]/(?<header>.*), /greeting/${header}
     - AddResponseHeader=x-resheader-create, {header}
 
 # Response Header: Update
@@ -146,7 +146,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/setcontenttype/{content-type}
     filters: 
-    - RewritePath=/setcontenttype/(?<type>.*), /greeting/${type}
+    - RewritePath=/[^/]/(?<type>.*), /greeting/${type}
     - SetResponseHeader=Content-Type, {content-type}
 
 # Response Header: Delete
@@ -163,7 +163,21 @@ spring.cloud.gateway:
 
 # Request Parameter: Create
   # /addreqparam/
-  #- id: gateway-routes-by-param
-  #  uri: http://gateway.169.56.84.41
-  #  predicates: 
-  #  - Path: /addreqparam/
+  - id: gateway-routes-by-param
+    uri: lb://webhook
+    predicates: 
+    - Path: /routes/{param}
+    - Query: svc, ^webhook$
+    - Query: api, ^greeting$
+    filters: 
+    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg}
+
+  - id: consumer-reqparam-create
+    uri: http://gateway.169.56.84.41 
+    predicates:
+    - Path: /addreaparam/{greeting} 
+    filters:
+    - RewritePath=/[^/]/(?<msg>.*), /routes/${msg}
+    - AddRequestParam=svc, webhook
+    - AddRequestParam=api, greeting 
+    

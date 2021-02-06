@@ -130,6 +130,17 @@ spring.cloud.gateway:
     - AddRequestHeader=x-removed-header, {rmheader}
     - RemoveRequestHeader=x-removed-header
     
+# Response Header: Create
+  - id: consumer-resheader-create 
+    uri: lb://consumer
+    predicates:
+    - Path=/addresheader/{header}
+    filters: 
+    - RewritePath=/addresheader/(?<header>.*), /greeting/${header}
+    - AddResponseHeader=x-resheader-create, {header}
 
+# Response Header: Update
+
+# Response Header: Delete
 
 

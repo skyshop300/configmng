@@ -177,7 +177,7 @@ spring.cloud.gateway:
     - Path=/addreqparam/**
     filters:
     - RewritePath=/.*/(?<param>.*), /consumer/${param}
-    - AddRequestParameter=svc, webhook 
+    - AddRequestParameter=svc, consumer 
     - AddRequestParameter=api, greeting 
 
 # Request Parameter: Update

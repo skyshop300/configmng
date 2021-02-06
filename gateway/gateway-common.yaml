@@ -4,7 +4,7 @@ spring:
       ribbon:
         enabled: false        
 ---
-# Before, After, Between
+# Predicates: Before, After, Between
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-event 
@@ -33,7 +33,7 @@ spring.cloud.gateway:
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
     
 ---
-# Cookie
+# Predicates: Cookie
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-cookie
@@ -44,7 +44,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 --- 
-# Request Header
+# Predicates: Header
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-header 
@@ -56,7 +56,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 ---
-# Request Host
+# Predicates: Host
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-host 
@@ -67,7 +67,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 ---
-# Request Method
+# Predicates: Method
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-method 
@@ -78,7 +78,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 --- 
-# Request Query
+# Predicates: Query
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-query 
@@ -89,7 +89,7 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 --- 
-# Weight for canari deploy
+# Predicates: Weight -> use it for canari deploy
 spring.cloud.gateway:
   routes: 
   - id: hystrix-producer-v1 
@@ -106,3 +106,19 @@ spring.cloud.gateway:
     - Weight=group1, 4
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
+---
+
+# Gateway filters 
+---
+# Request Header: Add, Update, Delete
+spring.cloud.gateway:
+  routes: 
+  - id: hystrix-producer-addreqheader
+    uri: lb://consumer
+    predicates:
+    - Path=/addreqheader/**
+    filters:
+    - RewritePath=/addreqheader/(.*), /greeting/pass/$1 
+    #- AddRequestHeader= 
+
+

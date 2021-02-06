@@ -231,6 +231,14 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/.*/(?<msg>.*), /coffees/pass 
     - PrefixPath=/api 
-  
+# StripPrefix
+  # /strip-prefix/prefixpath -> /prefixpath 
+  - id: strip-prefix
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/strip-prefix/**
+    filters: 
+    - StripPrefix=1 
+
 
 

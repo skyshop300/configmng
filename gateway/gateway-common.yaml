@@ -258,6 +258,19 @@ spring.cloud.gateway:
     - Path=/setpath/{api}/{param}
     filters:
     - SetPath=/{api}/{param}
+---
+# ===== Default filters ========
+# Try /setpath/hystrix/pass and /setpath/hystrix/nopass . Watch console of consumer-0
+spring.cloud.gateway:
+  default-filters: 
+  - AddRequestHeader=x-serviceid, spring-gateway 
+  - name: CircuitBreaker
+    args: 
+      name: default-fallback 
+      fallbackUri: forward:/myfallback 
+
+
+  
     
 
 

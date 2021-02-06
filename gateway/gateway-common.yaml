@@ -255,9 +255,9 @@ spring.cloud.gateway:
   - id: setpath 
     uri: lb://consumer
     predicates:
-    - Path=/setpath/**
+    - Path=/setpath/{path}
     filters:
-    - RewritePath=/.*/(?<path>.*)/(?<param>.*), /${path}/${param}
+    - SetPath=/{path}
     
 
 

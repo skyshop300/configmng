@@ -92,7 +92,7 @@ spring.cloud.gateway:
 
 #========== GatewayFilter factories ============== 
 
-# Request Header: Add
+# Request Header: Create
   - id: consumer-addreqheader 
     uri: lb://consumer
     predicates:
@@ -108,5 +108,16 @@ spring.cloud.gateway:
     filters:
     - AddRequestHeader=x-req-msg, {greeting}
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
+  
+# Request Header: Update
+  # /setreqheader/max-age=86400
+  - id: consumer-reqheader-update
+    uri: lb://consumer
+    predicates:
+    - Path=/setreqheader/{cache-control} 
+    filters: 
+    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
+    - SetRequestHeader=cache-control, {cache-control}
+
 
 

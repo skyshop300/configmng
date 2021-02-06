@@ -113,12 +113,12 @@ spring.cloud.gateway:
 # Request Header: Add, Update, Delete
 spring.cloud.gateway:
   routes: 
-  - id: hystrix-producer-addreqheader
+  - id: consumer-addreqheader
     uri: lb://consumer
     predicates:
     - Path=/addreqheader/**
     filters:
-    - RewritePath=/addreqheader/(?<msg>.*), /greeting/$\{msg} 
+    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
     #- AddRequestHeader= 
 
 

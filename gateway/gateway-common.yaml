@@ -90,13 +90,13 @@ spring.cloud.gateway:
 ---
 #========== Gateway filters ============== 
 
-# Request Header: Add, Update, Delete
+# Request Header: Add
   - id: consumer-addreqheader
     uri: lb://consumer
     predicates:
     - Path=/addreqheader/{greeting}
     filters:
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
-    - AddRequestHeader=X-req-greeting, {greeting}
+    - AddRequestHeader=X-req-greeting, ${greeting}
 
 

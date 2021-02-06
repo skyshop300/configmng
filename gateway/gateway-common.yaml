@@ -161,12 +161,20 @@ spring.cloud.gateway:
     - RemoveResponseHeader=x-header
  
  # AddRequestParameter
-  - id: gateway-routes-by-query
+ # /webhook/hello?svc=webhook&api=greeting
+  - id: consumer-routes-by-query
     uri: lb://consumer
     predicates: 
-    - Path=/webhook/{param} 
+    - Path=/webhook/** 
     - Query=svc, ^webhook$
     - Query=api, ^greeting$
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
-    
+  - id: gateway-routes-by-query  
+    uri: http://gateway.169.56.84.41.nip.io
+    predicates:
+    - Path=/addreqparam/**
+    filters:
+    - RewritePath=/.*/(?<param>.*), /webhook/${param}
+    - AddRequestParameter=svc, webhook 
+    - AddRequestParameter=api, greeting 

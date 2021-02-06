@@ -96,7 +96,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/addreqheader/**
     filters:
-    - AddRequestHeader=X-Req-greeting, Hello
+    #- AddRequestHeader=X-Req-greeting, Hello
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
 
 

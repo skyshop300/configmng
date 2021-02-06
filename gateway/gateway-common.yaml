@@ -180,7 +180,7 @@ spring.cloud.gateway:
     - AddRequestParameter=svc, consumer 
     - AddRequestParameter=api, greeting 
 
-# Request Parameter: Update
+# Request Parameter: Update - same as AddRequestParameter
   - id: consumer-reqparam-update 
     uri: http://gateway.169.56.84.41.nip.io
     predicates: 
@@ -192,3 +192,13 @@ spring.cloud.gateway:
     - AddRequestParameter=svc, consumer
     - AddRequestParameter=api, greeting 
 
+# Request Parameter: Delete 
+  - id: consumer-reqparam-delete 
+    uri: http://gateway.169.56.84.41.nip.io
+    predicates: 
+    - Path=/rmreqparam/** 
+    - Query=svc, consumer 
+    - Query=api, greeting 
+    filters: 
+    - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
+    

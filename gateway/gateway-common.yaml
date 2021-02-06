@@ -197,9 +197,10 @@ spring.cloud.gateway:
     uri: http://gateway.169.56.84.41.nip.io
     predicates: 
     - Path=/rmreqparam/** 
-    - Query=svc, consumer 
+    - Query=svc, webhook  
     - Query=api, greeting
-    - Query=dummy, hello  
     filters: 
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
-
+    - RemoveRequestParameter=svc 
+    - AddRequestParameter=svc, consumer 
+     

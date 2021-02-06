@@ -149,4 +149,13 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<type>.*), /greeting/${type}
     - SetResponseHeader=Content-Type, {content-type}
 
-    
+# Response Header: Delete
+  - id: consumer-resheader-delete
+    uri: lb://consumer 
+    predicates:
+    - Path=/rmresheader/{rmheader}
+    filters: 
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    - AddResponseHeader=x-header, {rmheader}
+    - AddResponseHeader=x-removed-header, x-header
+    - RemoveResponseHeader=x-header

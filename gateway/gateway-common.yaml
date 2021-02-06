@@ -107,7 +107,7 @@ spring.cloud.gateway:
     - Path=/addreqheader2/{greeting}
     filters:
     - AddRequestHeader=x-req-msg, {greeting}
-    - RewritePath=/addreqheader2/(?<msg>.*), /greeting/${msg} 
+    - RewritePath=/.*/(?<msg>.*), /greeting/${msg} 
   
 # Request Header: Update
   # /setreqheader/max-age=86400

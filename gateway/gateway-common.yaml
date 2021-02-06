@@ -162,14 +162,4 @@ spring.cloud.gateway:
     - RemoveResponseHeader={header}
 
 # Request Parameter: Create
-  # /addreqparam/
-  - id: gateway-routes-by-query
-    uri: lb://consumer
-    predicates: 
-    - Path=/webhook/**
-    #- Query=svc, ^webhook$
-    #- Query=api, ^greeting$
-    filters: 
-    - RewritePath=/[^/]/(?<msg>.*), /greeting/${msg}
-
-    
+ 

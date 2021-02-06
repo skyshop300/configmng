@@ -180,7 +180,7 @@ spring.cloud.gateway:
     - AddRequestParameter=svc, consumer 
     - AddRequestParameter=api, greeting 
 
-# Request Parameter: Update - same as AddRequestParameter
+# Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
   - id: consumer-reqparam-update 
     uri: http://gateway.169.56.84.41.nip.io
     predicates: 
@@ -203,3 +203,11 @@ spring.cloud.gateway:
     - RemoveRequestParameter=svc 
     - AddRequestParameter=svc, consumer 
 
+# Fallback
+  - id: hystrix-consumer-fallback
+    uri: lb://hystrix-consumer 
+    predicates: 
+    - Path=/fallback/**
+    filters:
+    - RewritePath=/.*/(?<param>.*), /hystrix/${param} 
+    

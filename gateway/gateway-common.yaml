@@ -97,6 +97,6 @@ spring.cloud.gateway:
     - Path=/addreqheader/{greeting}
     filters:
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg} 
-    - AddRequestHeader=X-req-greeting, ${greeting}
+    - AddRequestHeader=X-Req-greeting, Hello
 
 

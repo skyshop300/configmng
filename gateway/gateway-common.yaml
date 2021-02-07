@@ -258,6 +258,26 @@ spring.cloud.gateway:
     - Path=/setpath/{api}/{param}
     filters:
     - SetPath=/{api}/{param}
+
+# Retry
+  - id: consumer-retry 
+    uri: lb://consumer 
+    predicates: 
+    - Path=/retry
+    filters: 
+    - RewritePath=/.*, /greeting/hi-retry 
+    - name: Retry 
+      args: 
+        retries: 5
+        statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR
+        methods: GET, POST 
+        backoff:
+          firstBackoff: 100ms 
+          maxBackoff: 1000ms
+          factor: 2
+          basedOnPreviousValue: false 
+
+
 ---
 # ===== Default filters ========
 # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.

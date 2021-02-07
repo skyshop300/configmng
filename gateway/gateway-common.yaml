@@ -271,10 +271,10 @@ spring.cloud.gateway:
         retries: 5
         statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE        
         methods: GET, POST 
-        backoff:
+        backoff: 
           firstBackoff: 1000ms 
           maxBackoff: 3000ms
-          factor: 5
+          factor: 1
     metadata:
       connect-timeout: 1000
       response-timeout: 1000 

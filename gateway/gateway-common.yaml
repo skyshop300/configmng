@@ -281,9 +281,10 @@ spring.cloud.gateway:
 
 ---
 # ===== Global settings  ========
-# Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
 spring.cloud.gateway:
   routes: 
+  # Dynamic routing using Custom GgatewayFilterFactory
+  # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
   - id: route-by-serviceid 
     uri: no://op 
     predicates: 
@@ -296,7 +297,10 @@ spring.cloud.gateway:
     
   # Default filters 
   default-filters: 
+  # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
   - AddRequestHeader=x-serviceid, spring-gateway 
+  
+  # GatewayFilterFactory sample 
   - name: PreLogger
     args:
       baseMessage: PRE GATEWAYFILTER FACTORY 

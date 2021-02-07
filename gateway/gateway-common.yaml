@@ -287,7 +287,15 @@ spring.cloud.gateway:
   # Default filters 
   default-filters: 
   - AddRequestHeader=x-serviceid, spring-gateway 
-
+  - name: PreGatewayFilterFactory
+    args:
+      baseMessage: PRE GATEWAYFILTER FACTORY 
+      logging: true 
+  - name: PostGatewayFilterFactory
+    args: 
+      baseMessage: POST GATEWAYFILTER FACTORY
+      logging: true 
+       
   # http timeout
   httpclient: 
     connect-timeout: 1000
@@ -307,11 +315,13 @@ spring.cloud.gateway:
         - PUT 
         - POST 
 
-# Enable Gateway Actuator
-# management:
-#   endpoint.gateway.enabled: true
-#   endpoints.web.exposure.include: gateway 
+# Enable gateway Actuator: default is enabled
+# gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway 
 
+  
 
 
 

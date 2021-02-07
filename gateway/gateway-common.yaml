@@ -291,10 +291,10 @@ spring.cloud.gateway:
   #   args:
   #     baseMessage: PRE GATEWAYFILTER FACTORY 
   #     logging: true 
-  # - name: PostGatewayFilterFactory
-  #   args: 
-  #     baseMessage: POST GATEWAYFILTER FACTORY
-  #     logging: true 
+  - name: PostGatewayFilterFactory
+    args: 
+      baseMessage: POST GATEWAYFILTER FACTORY
+      logging: true 
 
   # http timeout
   httpclient: 

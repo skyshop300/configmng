@@ -314,5 +314,12 @@ spring.cloud.gateway:
         - PUT 
         - POST 
 
+# Enable Gateway Actuator
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway 
+
+
+
 
 

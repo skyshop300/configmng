@@ -283,7 +283,7 @@ spring.cloud.gateway:
   - id: images 
     uri: https://spring.io 
     predicates: 
-    - Path=/images/** 
+    - Path=/spring-images/** 
     
 
 ---

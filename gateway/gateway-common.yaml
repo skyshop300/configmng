@@ -272,9 +272,9 @@ spring.cloud.gateway:
         statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE        
         methods: GET, POST 
         backoff: 
-          firstBackoff: 1000ms 
-          maxBackoff: 3000ms
-          factor: 1
+          firstBackoff: 500ms 
+          maxBackoff: 2000ms
+          factor: 10
     metadata:
       connect-timeout: 1000
       response-timeout: 1000 

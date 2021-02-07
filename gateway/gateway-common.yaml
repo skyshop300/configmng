@@ -273,7 +273,7 @@ spring.cloud.gateway:
         methods: GET, POST 
         backoff:
           firstBackoff: 1000ms 
-          maxBackoff: 2000ms
+          maxBackoff: 5000ms
           factor: 5
           basedOnPreviousValue: false 
     metadata:

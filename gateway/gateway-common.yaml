@@ -268,15 +268,15 @@ spring.cloud.gateway:
     - RewritePath=/.*, /greeting/hi-retry 
     - name: Retry 
       args: 
-        retries: 5
+        retries: 5              # 재시도 횟수 
         statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE        
         methods: GET, POST 
         backoff: 
-          firstBackoff: 500ms 
-          maxBackoff: 2000ms
-          factor: 10
+          firstBackoff: 500ms   #첫번째 재시도는 실패 후 0.5초 후 수행  
+          maxBackoff: 2000ms    #재시도 간격 
+          factor: 10            #firstBackoff * (factor^retries)가 재시도 간격임. maxBackoff보다 클 수는 없음.   
     metadata:
-      connect-timeout: 1000
+      connect-timeout: 1000     
       response-timeout: 1000 
       
 

@@ -270,8 +270,8 @@ spring.cloud.gateway:
       args: 
         retries: 30
         #statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE
-        statuses: 500, 501, 502, 503, 504
-        methods: GET, POST 
+        #statuses: 500, 501, 502, 503, 504
+        #methods: GET, POST 
         backoff:
           firstBackoff: 1000ms 
           maxBackoff: 1000ms

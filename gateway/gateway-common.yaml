@@ -91,7 +91,7 @@ spring.cloud.gateway:
     - RewritePath=/(.*), /api/coffees/pass
 
 #========== GatewayFilter factories ============== 
-
+    
 # Request Header: Create
   # watch console of consumer-0 POD 
   - id: consumer-reqheader-create 
@@ -283,7 +283,17 @@ spring.cloud.gateway:
 # ===== Global settings  ========
 # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
 spring.cloud.gateway:
-
+  routes: 
+  - id: route-by-serviceid 
+    uri: no://op 
+    predicates: 
+    - Path=/*/**
+    filters: 
+    - StripPrefix=1
+    - name: UriHostPlaceholderFilter
+      args: 
+        order: 10001
+    
   # Default filters 
   default-filters: 
   - AddRequestHeader=x-serviceid, spring-gateway 
@@ -295,7 +305,7 @@ spring.cloud.gateway:
     args: 
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
-
+  
   # http timeout
   httpclient: 
     connect-timeout: 1000
@@ -328,6 +338,6 @@ spring:
       probability: 1.0
   zipkin:
     base-url: http://zipkin:9411
-    
+
 
 

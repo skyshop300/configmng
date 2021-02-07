@@ -280,23 +280,39 @@ spring.cloud.gateway:
       response-timeout: 1000 
 
 #TEST 
-  - id: images 
-    uri: https://spring.io 
-    predicates: 
-    - Path=/spring-images/** 
+  # - id: images 
+  #   uri: https://spring.io 
+  #   predicates: 
+  #   - Path=/images/** 
     
 
 ---
-# ===== Default filters ========
+# ===== Global settings  ========
 # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
 spring.cloud.gateway:
+
+  # Default filters 
   default-filters: 
   - AddRequestHeader=x-serviceid, spring-gateway 
+
+  # http timeout
   httpclient: 
     connect-timeout: 1000
     response-timeout: 2s 
 
-
+  # CORS 
+  globalcors:
+    cors-configurations:
+      '[/**]':
+        allowedOrigins: "https://direct-order.ondal.com"
+        allowedMethods: 
+        - GET
+      '[/consumer/**]':
+        allowedOrigins: "https://consumer.ondal.com"
+        allowedMethods:  
+        - GET 
+        - PUT 
+        - POST 
 
 
 

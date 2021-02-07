@@ -7,7 +7,7 @@ spring:
 spring.cloud.gateway:
   routes: 
 
-# ======== Predigates factories ============
+# ======== Predicates factories ============
   - id: hystrix-producer-event 
     uri: lb://hystrix-producer
     predicates:
@@ -278,7 +278,13 @@ spring.cloud.gateway:
     metadata:
       connect-timeout: 1000     
       response-timeout: 1000 
-      
+
+#TEST 
+  - id: images 
+    uri: https://spring.io 
+    predicates: 
+    - Path=/images/** 
+    
 
 ---
 # ===== Default filters ========

@@ -279,13 +279,6 @@ spring.cloud.gateway:
       connect-timeout: 1000     
       response-timeout: 1000 
 
-#TEST 
-  # - id: images 
-  #   uri: https://spring.io 
-  #   predicates: 
-  #   - Path=/images/** 
-    
-
 ---
 # ===== Global settings  ========
 # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
@@ -315,9 +308,9 @@ spring.cloud.gateway:
         - POST 
 
 # Enable Gateway Actuator
-management:
-  endpoint.gateway.enabled: true
-  endpoints.web.exposure.include: gateway 
+# management:
+#   endpoint.gateway.enabled: true
+#   endpoints.web.exposure.include: gateway 
 
 
 

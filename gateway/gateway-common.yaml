@@ -268,7 +268,7 @@ spring.cloud.gateway:
     - RewritePath=/.*, /greeting/hi-retry 
     - name: Retry 
       args: 
-        retries: 5
+        retries: 20
         statuses: BAD_GATEWAY, INTERNAL_SERVER_ERROR, SERVICE_UNAVAILABLE
         methods: GET, POST 
         backoff:

@@ -174,19 +174,8 @@ spring.cloud.scg:
   - id: consumer-routes-by-query
     uri: lb://consumer
     predicates: 
-    - Path=/gosvc/** 
-    #- Query=svc, ^consumer$
-    #- Query=api, ^greeting$
+    - Path=/consumer/** 
+    - Query=svc, ^consumer$
+    - Query=api, ^greeting$
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
-
-  # - id: scg-reqparam-create
-  #   uri: http://scg.169.56.84.41.nip.io
-  #   predicates:
-  #   - Path=/addreqparam/**
-  #   filters:
-  #   - RewritePath=/.*/(?<param>.*), /gosvc/${param}
-  #   - AddRequestParameter=svc, consumer 
-  #   - AddRequestParameter=api, greeting 
-
-

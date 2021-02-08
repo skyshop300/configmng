@@ -172,7 +172,7 @@ spring.cloud.scg:
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
   #  -> http://{consumer}/greeting/hello 
   - id: scg-reqparam-create
-    uri: lb://scg
+    uri: http://scg:8082
     predicates:
     - Path=/addreqparam/**
     filters:

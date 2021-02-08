@@ -7,6 +7,7 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/webhook/(?<uri>.*), /${uri}
 
+# Before, After, Between
   - id: hystrix-producer-event 
     uri: lb://hystrix-producer
     predicates:
@@ -31,4 +32,32 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/hystrix-producer/(?<apiuri>.*), /${apiuri}  # 그룹갭처 '(?<group>pattern)', group명에 특수문자 쓰지 않기 
     - PrefixPath=/api  #무조건 앞에 붙이는 문자열 
-   
+
+# Predicates: Cookie
+  - id: hystrix-producer-cookie
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/cookie/**
+    - Cookie=LTPAToken,* 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass  
+
+# Predicates: Header
+  - id: hystrix-producer-header 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/header/**
+    - Header=User-Agent, .+Chrome.*   #only chrome support
+    - Header=Host, ^gateway.*         #only from host which start 'gateway' 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass    
+
+# Predicates: Host
+  - id: hystrix-producer-host 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/host/**
+    - Host=gateway.**, **.myorg.com   #not regrexp, but Ant-style pattern(?, *. **).
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass
+    

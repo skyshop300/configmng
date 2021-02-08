@@ -172,7 +172,6 @@ spring.cloud.gateway:
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
   #  -> http://{consumer}/greeting/hello 
 
-  # /consumer/hello?svc=consumer&api=greeting
   - id: consumer-routes-by-query
     uri: lb://consumer
     predicates: 
@@ -190,6 +189,29 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<param>.*), /consumer/${param}
     - AddRequestParameter=svc, consumer 
     - AddRequestParameter=api, greeting 
+
+# Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
+  - id: consumer-reqparam-update 
+    uri: lb://scg
+    predicates: 
+    - Path=/setreqparam/**
+    - Query=api, ^greeting$   
+    filters:
+    - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
+    - AddRequestParameter=svc, consumer
+    - AddRequestParameter=api, greeting 
+
+# Request Parameter: Delete 
+  - id: consumer-reqparam-delete 
+    uri: lb://scg
+    predicates: 
+    - Path=/rmreqparam/**
+    - Query=svc, webhook  
+    - Query=api, greeting
+    filters: 
+    - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
+    - RemoveRequestParameter=svc 
+    #- AddRequestParameter=svc, consumer
 
 
     

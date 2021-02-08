@@ -169,6 +169,17 @@ spring.cloud.scg:
     - RemoveResponseHeader=x-header
 
 # Request Parameter: Create 
+  # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
+  #  -> http://{consumer}/greeting/hello 
+  - id: scg-reqparam-create
+    uri: lb://scg
+    predicates:
+    - Path=/addreqparam/**
+    filters:
+    - RewritePath=/.*/(?<param>.*), /consumer/${param}
+    - AddRequestParameter=svc, consumer 
+    - AddRequestParameter=api, greeting 
+
   # /consumer/hello?svc=consumer&api=greeting
   - id: consumer-routes-by-query
     uri: lb://consumer
@@ -178,15 +189,6 @@ spring.cloud.scg:
     - Query=api, ^greeting$
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
-  
-  - id: scg-reqparam-create
-    uri: lb://scg
-    predicates:
-    - Path=/addreqparam/**
-    filters:
-    - RewritePath=/.*/(?<param>.*), /consumer/${param}
-    - AddRequestParameter=svc, consumer 
-    - AddRequestParameter=api, greeting 
 
 # Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
   - id: consumer-reqparam-update 

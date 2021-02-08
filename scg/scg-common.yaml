@@ -60,3 +60,39 @@ spring.cloud.gateway:
     - Host=scg.**, **.myorg.com   #not regrexp, but Ant-style pattern(?, *. **).
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
+
+# Predicates: Method
+  - id: hystrix-producer-method 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/method/**
+    - Method=Get,POST   # only allow Get, POST.
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass
+
+# Predicates: Query
+  - id: hystrix-producer-query 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/query/**
+    - Query=param, ^pass$   # param값이 정확히 pass일때만 routing 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass
+
+# Predicates: Weight -> use it for canari deploy
+  - id: hystrix-producer-v1 
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/weight/**
+    - Weight=group1, 6 
+    filters: 
+    - RewritePath=/(.*), /api/coffees/no-pass
+  - id: hystrix-producer-v2
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/weight/**
+    - Weight=group1, 4
+    filters: 
+    - RewritePath=/(.*), /api/coffees/pass
+
+

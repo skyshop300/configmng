@@ -168,13 +168,28 @@ spring.cloud.gateway:
     - AddResponseHeader=x-removed-header, x-header
     - RemoveResponseHeader=x-header
 
-# Request Parameter: Create 
+# Request Parameter: Create
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
-  #  -> http://{consumer host}/greeting/hello 
-  - id: aaa
-    uri: lb://consumer 
-    predicates:
-    - Path=/gosvc/**
+  #  -> http://{consumer}/greeting/hello 
+
+  # /consumer/hello?svc=consumer&api=greeting
+  - id: consumer-routes-by-query
+    uri: lb://consumer
+    predicates: 
+    - Path=/consumer/** 
+    - Query=svc, ^consumer$
+    - Query=api, ^greeting$
     filters: 
-    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
+
+  - id: scg-reqparam-create
+    uri: lb://scg
+    predicates:
+    - Path=/addreqparam/**
+    filters:
+    - RewritePath=/.*/(?<param>.*), /consumer/${param}
+    - AddRequestParameter=svc, consumer 
+    - AddRequestParameter=api, greeting 
+
+
     

@@ -171,4 +171,10 @@ spring.cloud.scg:
 # Request Parameter: Create 
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
   #  -> http://{consumer}/greeting/hello 
-  
+  - id: aaa
+    uri: lb://consumer 
+    predicates:
+    - Path=/gosvc/**
+    filters: 
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    

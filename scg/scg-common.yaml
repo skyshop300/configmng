@@ -171,11 +171,4 @@ spring.cloud.scg:
 # Request Parameter: Create 
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
   #  -> http://{consumer}/greeting/hello 
-  - id: consumer-routes-by-query
-    uri: lb://consumer
-    predicates: 
-    - Path=/gosvc/**
-    - Query=svc, ^consumer$
-    - Query=api, ^greeting$
-    filters: 
-    - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
+  

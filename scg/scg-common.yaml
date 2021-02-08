@@ -1,4 +1,4 @@
-spring.cloud.gateway:
+spring.cloud.scg:
   routes: 
   - id: webhook-test1
     uri: lb://webhook
@@ -50,7 +50,7 @@ spring.cloud.gateway:
     predicates:
     - Path=/header/**
     - Header=User-Agent, .+Chrome.*   #only chrome support
-    - Header=Host, ^gateway.*         #only from host which start 'gateway' 
+    - Header=Host, ^scg.*         #only from host which start 'scg' 
     filters: 
     - RewritePath=/(.*), /api/coffees/pass    
 
@@ -179,8 +179,8 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
   
-  - id: gateway-reqparam-create
-    uri: lb://gateway
+  - id: scg-reqparam-create
+    uri: lb://scg
     predicates:
     - Path=/addreqparam/**
     filters:
@@ -190,7 +190,7 @@ spring.cloud.gateway:
 
 # Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
   - id: consumer-reqparam-update 
-    uri: lb://gateway
+    uri: lb://scg
     predicates: 
     - Path=/setreqparam/**
     - Query=api, ^greeting$   
@@ -201,7 +201,7 @@ spring.cloud.gateway:
 
 # Request Parameter: Delete 
   - id: consumer-reqparam-delete 
-    uri: lb://gateway
+    uri: lb://scg
     predicates: 
     - Path=/rmreqparam/** 
     - Query=svc, webhook  

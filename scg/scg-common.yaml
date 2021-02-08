@@ -208,5 +208,5 @@ spring.cloud.gateway:
     - Query=api, greeting
     filters: 
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
-    - RemoveRequestParameter=svc 
-    - AddRequestParameter=svc, consumer 
+    - RemoveRequestParameter=svc
+    - AddRequestParameter=svc, consumer

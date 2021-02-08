@@ -109,3 +109,61 @@ spring.cloud.gateway:
     - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg}
     - AddRequestHeader=x-req-msg, Happy
 
+  - id: consumer-reqheader-create2
+    uri: lb://consumer
+    predicates:
+    - Path=/addreqheader2/{greeting}
+    filters:
+    - AddRequestHeader=x-req-msg, {greeting}
+    - RewritePath=/.*/(?<msg>.*), /greeting/${msg} 
+
+# Request Header: Update
+  # /setreqheader/max-age=86400
+  - id: consumer-reqheader-update
+    uri: lb://consumer
+    predicates:
+    - Path=/setreqheader/{cache-control} 
+    filters: 
+    - RewritePath=/.*/(?<msg>.*), /greeting/${msg} 
+    - SetRequestHeader=cache-control, {cache-control}
+
+# Request Header: Delete
+  # /rmreqheader/x-removed-header
+  - id: consumer-reqheader-delete 
+    uri: lb://consumer 
+    predicates:
+    - Path=/rmreqheader/{rmheader}
+    filters:
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    - AddRequestHeader=x-removed-header, {rmheader}
+    - RemoveRequestHeader=x-removed-header
+
+# Response Header: Create
+  - id: consumer-resheader-create 
+    uri: lb://consumer
+    predicates:
+    - Path=/addresheader/{header}
+    filters: 
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    - AddResponseHeader=x-resheader-create, {header}
+
+# Response Header: Update
+  # /setcontenttype/text
+  - id: consumer-resheader-update
+    uri: lb://consumer 
+    predicates:
+    - Path=/setcontenttype/{content-type}
+    filters: 
+    - RewritePath=/.*/(?<type>.*), /greeting/${type}
+    - SetResponseHeader=Content-Type, {content-type}
+
+# Response Header: Delete
+  - id: consumer-resheader-delete
+    uri: lb://consumer 
+    predicates:
+    - Path=/rmresheader/{rmheader}
+    filters: 
+    - RewritePath=/.*/(?<header>.*), /greeting/${header}
+    - AddResponseHeader=x-header, {rmheader}
+    - AddResponseHeader=x-removed-header, x-header
+    - RemoveResponseHeader=x-header

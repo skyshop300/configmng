@@ -190,25 +190,3 @@ spring.cloud.scg:
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
 
-# Request Parameter: Update - No SetRequestParameter. use AddRequestParameter
-  - id: consumer-reqparam-update 
-    uri: lb://scg
-    predicates: 
-    - Path=/setreqparam/**
-    - Query=api, ^greeting$   
-    filters:
-    - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
-    - AddRequestParameter=svc, consumer
-    - AddRequestParameter=api, greeting 
-
-# Request Parameter: Delete 
-  - id: consumer-reqparam-delete 
-    uri: lb://scg
-    predicates: 
-    - Path=/rmreqparam/** 
-    - Query=svc, webhook  
-    - Query=api, greeting
-    filters: 
-    - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
-    - RemoveRequestParameter=svc
-    - AddRequestParameter=svc, consumer

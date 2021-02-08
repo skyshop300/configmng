@@ -175,8 +175,8 @@ spring.cloud.scg:
     uri: lb://consumer
     predicates: 
     - Path=/gosvc/** 
-    - Query=svc, ^consumer$
-    - Query=api, ^greeting$
+    #- Query=svc, ^consumer$
+    #- Query=api, ^greeting$
     filters: 
     - RewritePath=/.*/(?<msg>.*), /greeting/${msg}
 

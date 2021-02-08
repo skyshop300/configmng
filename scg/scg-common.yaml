@@ -7,6 +7,8 @@ spring.cloud.gateway:
     filters:
     - RewritePath=/webhook/(?<uri>.*), /${uri}
 
+#========== Predicates ============== 
+
 # Before, After, Between
   - id: hystrix-producer-event 
     uri: lb://hystrix-producer
@@ -95,4 +97,15 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(.*), /api/coffees/pass
 
+#========== GatewayFilter factories ============== 
+    
+# Request Header: Create
+  # watch console of consumer-0 POD 
+  - id: consumer-reqheader-create 
+    uri: lb://consumer
+    predicates:
+    - Path=/addreqheader/**
+    filters:
+    - RewritePath=/addreqheader/(?<msg>.*), /greeting/${msg}
+    - AddRequestHeader=x-req-msg, Happy
 

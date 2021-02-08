@@ -174,7 +174,7 @@ spring.cloud.scg:
   - id: consumer-routes-by-query
     uri: lb://consumer
     predicates: 
-    - Path=/gosvc/** 
+    - Path=/gosvc/**
     - Query=svc, ^consumer$
     - Query=api, ^greeting$
     filters: 

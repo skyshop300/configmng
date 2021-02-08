@@ -6,3 +6,4 @@ spring.cloud.gateway:
     - Path=/webhook/**   
     filters:
     - RewritePath=/webhook/(?<uri>.*), /${uri}
+  

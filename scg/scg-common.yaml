@@ -204,14 +204,14 @@ spring.cloud.gateway:
 # Request Parameter: Delete 
   - id: consumer-reqparam-delete 
     uri: lb://scg
-    predicates: 
+    predicates:
     - Path=/rmreqparam/**
     - Query=svc, webhook  
     - Query=api, greeting
     filters: 
     - RewritePath=/.*/(?<msg>.*), /consumer/${msg} 
     - RemoveRequestParameter=svc 
-    #- AddRequestParameter=svc, consumer
+    - AddRequestParameter=svc, consumer
 
 
     

@@ -1,4 +1,4 @@
-spring.cloud.scg:
+spring.cloud.gateway:
   routes: 
   - id: webhook-test1
     uri: lb://webhook
@@ -170,7 +170,7 @@ spring.cloud.scg:
 
 # Request Parameter: Create 
   # /addreqparam/hello -> /consumer/hello?svc=consumer&api=greeting 
-  #  -> http://{consumer}/greeting/hello 
+  #  -> http://{consumer host}/greeting/hello 
   - id: aaa
     uri: lb://consumer 
     predicates:

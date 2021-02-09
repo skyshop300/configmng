@@ -343,9 +343,9 @@ spring.cloud.gateway:
 ---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
-# management:
-#   endpoint.gateway.enabled: true
-#   endpoints.web.exposure.include: gateway 
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway 
 
 ---
 spring:

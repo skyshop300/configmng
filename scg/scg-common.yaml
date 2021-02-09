@@ -286,5 +286,6 @@ spring.cloud.gateway:
       headers:
         - connection
         - keep-alive
+        - x-real-ip
 
  

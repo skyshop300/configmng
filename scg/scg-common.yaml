@@ -283,7 +283,7 @@ spring.cloud.gateway:
 # Dynamic routing using Custom GgatewayFilterFactory
   # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
   - id: dynamic-routing 
-    uri: tbd
+    uri: 
     predicates: 
     - Path=/*/**
     filters: 

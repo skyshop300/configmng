@@ -305,7 +305,7 @@ spring.cloud.gateway:
         name: myfallback
         fallbackUri: forward:/myfallback
   - id: myfallback 
-    uri: lb://scg
+    uri: lb://consumer
     predicates: 
     - Path=/myfallback 
     filters: 

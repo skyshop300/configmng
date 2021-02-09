@@ -292,25 +292,6 @@ spring.cloud.gateway:
       args: 
         order: 10001
 
-  # /fallback/nopass 
-  # add dependency 'spring-cloud-starter-circuitbreaker-reactor-resilience4j'
-  - id: consumer-fallback
-    uri: lb://consumer 
-    predicates: 
-    - Path=/fallback/**
-    filters:
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: myfallback
-        fallbackUri: forward:/myfallback
-  - id: myfallback 
-    uri: lb://consumer
-    predicates: 
-    - Path=/myfallback 
-    filters: 
-    - SetPath=/actuator 
-
 ---
 spring.cloud.gateway:
   filter:

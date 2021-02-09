@@ -268,16 +268,6 @@ spring.cloud.gateway:
     metadata:
       connect-timeout: 1000     
       response-timeout: 1000 
-
- # ====== HTTPHeaders Filter ========
-  # Forwarded
-  - id: httpheader
-    uri: lb://consumer 
-    predicates: 
-    - Path=/httpheader 
-    filters: 
-    - RewritePath=/(?<filter>.*), /greeting/${filter} 
-    - XForwarded=*
     
 ---
 spring.cloud.gateway:
@@ -287,19 +277,8 @@ spring.cloud.gateway:
         - connection
         - keep-alive
         - x-real-ip
-        #- x-forwarded-host 
-        #- x-forwarded-port 
-        #- x-forwarded-proto 
-    
-  # x-forwared fileter 제어 : default는 모두 true임 
-  x-forwarded.for-enabled: false 
-  x-forwarded.host-enabled: true    
-  x-forwarded.port-enabled: false  
-  x-forwarded.proto-enabled: false 
-  x-forwarded.prefix-enabled: false  
 
-
-
-
-
- 
+  # http timeout
+  httpclient: 
+    connect-timeout: 1000
+    response-timeout: 2000ms   # or 2s

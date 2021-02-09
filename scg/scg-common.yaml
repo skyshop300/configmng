@@ -271,12 +271,12 @@ spring.cloud.gateway:
 
  # ====== HTTPHeaders Filter ========
   # Forwarded
-  - id: httpheader-forwared
+  - id: header-forwared
     uri: lb://consumer 
     predicates: 
-    - Path=/header-forwarded
+    - Path=/forwarded
     filters: 
     - RewritePath=/(?<filter>.*), /greeting/${filter} 
-    - Forwarded 
-     
+    #- Forwarded 
+
  

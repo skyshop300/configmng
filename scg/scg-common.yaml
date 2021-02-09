@@ -278,6 +278,13 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/(?<filter>.*), /greeting/${filter} 
     #- Forwarded 
-    - RemoveHopByHop
+    #- RemoveHopByHop=Connection
+---
+spring.cloud.gateway:
+  filter:
+    remove-hop-by-hop:
+      headers:
+        - connection
+        - keep-alive
 
  

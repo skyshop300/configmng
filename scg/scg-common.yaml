@@ -287,16 +287,9 @@ spring.cloud.gateway:
         - connection
         - keep-alive
         - x-real-ip
-        - x-forwarded.host 
-        - x-forwarded.port 
-        - x-forwarded.proto 
-
-  # x-forwared fileter 제어 : default는 모두 true임 
-  x-forwarded.for-enabled: false 
-  x-forwarded.host-enabled: false   
-  x-forwarded.port-enabled: false 
-  x-forwarded.proto-enabled: false 
-  x-forwarded.prefix-enabled: true 
+        - x-forwarded-host 
+        - x-forwarded-port 
+        - x-forwarded-proto 
 
     
 

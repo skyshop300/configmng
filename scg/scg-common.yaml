@@ -213,5 +213,33 @@ spring.cloud.gateway:
     - RemoveRequestParameter=svc 
     - AddRequestParameter=svc, consumer
 
+# PrefixPath
+  - id: prefixpath
+    uri: lb://hystrix-producer
+    predicates:
+    - Path=/prefixpath
+    filters: 
+    - RewritePath=/.*, /coffees/pass 
+    - PrefixPath=/api 
+
+# SetPath
+  # /setpath/hystrix/pass 
+  - id: setpath 
+    uri: lb://consumer
+    predicates:
+    - Path=/setpath/{api}/{param}
+    filters:
+    - SetPath=/{api}/{param}
+
+# StripPrefix
+  # /strip-prefix/prefixpath -> /prefixpath 
+  - id: strip-prefix
+    uri: lb://gateway
+    predicates:
+    - Path=/strip-prefix/**
+    filters: 
+    - StripPrefix=1 
+
+
 
     

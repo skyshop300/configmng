@@ -241,6 +241,15 @@ spring.cloud.gateway:
     filters: 
     - StripPrefix=1 
 
+# SetPath
+  # /setpath/hystrix/pass 
+  - id: setpath 
+    uri: lb://consumer
+    predicates:
+    - Path=/setpath/{api}/{param}
+    filters:
+    - SetPath=/{api}/{param}
+
 # RedirctTo 
   - id: redirect-to
     uri: lb://consumer 
@@ -250,14 +259,6 @@ spring.cloud.gateway:
     #- RedirectTo=302, http://{domain}   # 변수 받는건 안됨
     - RedirectTo=302, http://google.com  
 
-# SetPath
-  # /setpath/hystrix/pass 
-  - id: setpath 
-    uri: lb://consumer
-    predicates:
-    - Path=/setpath/{api}/{param}
-    filters:
-    - SetPath=/{api}/{param}
 
 # Retry
   - id: consumer-retry 

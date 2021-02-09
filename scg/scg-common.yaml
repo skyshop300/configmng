@@ -309,7 +309,7 @@ spring.cloud.gateway:
     predicates: 
     - Path=/myfallback 
     filters: 
-    - RewritePath=/.*, /actuator 
+    - RewritePath=/.*, /actuator
 
 ---
 spring.cloud.gateway:
@@ -340,7 +340,7 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-
+---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
 management:

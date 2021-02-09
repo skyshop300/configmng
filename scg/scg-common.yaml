@@ -277,6 +277,6 @@ spring.cloud.gateway:
     - Path=/forwarded
     filters: 
     - RewritePath=/(?<filter>.*), /greeting/${filter} 
-    #- Forwarded 
+    - Forwarded 
 
  

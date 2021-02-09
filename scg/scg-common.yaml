@@ -309,7 +309,7 @@ spring.cloud.gateway:
     predicates: 
     - Path=/myfallback 
     filters: 
-    - RewritePath=/.*, /actuator
+    - RewritePath=/.*, /actuator 
 
 ---
 spring.cloud.gateway:

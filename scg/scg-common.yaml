@@ -277,9 +277,9 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/.*, /greeting/timeout
     metadata:
-      connect-timeout: 10     
-      response-timeout: 10
-          
+      connect-timeout: 1000     
+      response-timeout: 1000
+
 ---
 spring.cloud.gateway:
   filter:

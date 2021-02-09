@@ -295,7 +295,7 @@ spring.cloud.gateway:
   # /fallback/nopass 
   # add dependency 'spring-cloud-starter-circuitbreaker-reactor-resilience4j'
   - id: hystrix-consumer-fallback
-    uri: lb://consumer 
+    uri: lb://hystrix-consumer 
     predicates: 
     - Path=/fallback/**
     filters:

@@ -268,7 +268,18 @@ spring.cloud.gateway:
     metadata:
       connect-timeout: 1000     
       response-timeout: 1000 
-    
+
+# Timeout
+  - id: timeout 
+    uri: lb://consumer 
+    predicates: 
+    - Path=/timeout
+    filters: 
+    - RewritePath=/.*, /greeting/timeout
+    metadata:
+      connect-timeout: 10     
+      response-timeout: 10
+          
 ---
 spring.cloud.gateway:
   filter:

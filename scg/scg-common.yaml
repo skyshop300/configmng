@@ -311,4 +311,14 @@ spring.cloud.gateway:
   default-filters: 
   # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
   - AddRequestHeader=x-serviceid, spring-gateway   
-  
+
+  # GatewayFilterFactory sample 
+  - name: PreLogger
+    args:
+      baseMessage: PRE GATEWAYFILTER FACTORY 
+      logging: true 
+  - name: PostLogger
+    args: 
+      baseMessage: POST GATEWAYFILTER FACTORY
+      logging: true 
+        

@@ -280,6 +280,19 @@ spring.cloud.gateway:
       connect-timeout: 1000     
       response-timeout: 1000
 
+# Dynamic routing using Custom GgatewayFilterFactory
+  # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
+  - id: dynamic-routing 
+    uri: no://op 
+    predicates: 
+    - Path=/*/**
+    filters: 
+    - StripPrefix=1
+    - name: UriHostPlaceholderFilter
+      args: 
+        order: 10001
+
+
 ---
 spring.cloud.gateway:
   filter:
@@ -296,4 +309,6 @@ spring.cloud.gateway:
   
   # default filters 
   default-filters: 
-  - CustomGlobalFilter
+  # Try /setpath/greeting/hey, Watch console of consumer-0 to check 'x-serviceid'.
+  - AddRequestHeader=x-serviceid, spring-gateway   
+  

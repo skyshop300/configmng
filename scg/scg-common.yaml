@@ -277,7 +277,7 @@ spring.cloud.gateway:
     - Path=/httpheader 
     filters: 
     - RewritePath=/(?<filter>.*), /greeting/${filter} 
-    #- Forwarded 
+    - XForwarded 
     #- RemoveHopByHop=Connection
 ---
 spring.cloud.gateway:
@@ -287,5 +287,17 @@ spring.cloud.gateway:
         - connection
         - keep-alive
         - x-real-ip
+
+  # x-forwared fileter 제어 : default는 모두 true임 
+  x-forwarded.for-enabled: false 
+  x-forwarded.host-enabled: false   
+  x-forwarded.port-enabled: false 
+  x-forwarded.proto-enabled: false 
+  x-forwarded.prefix-enabled: true 
+
+    
+
+
+
 
  

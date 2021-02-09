@@ -232,9 +232,9 @@ spring.cloud.gateway:
     - SetPath=/{api}/{param}
 
 # StripPrefix
-  # /strip-prefix/prefixpath -> /prefixpath 
+  # /strip-prefix/webhook/greeting/HI -> /webhook/greeting/HI 
   - id: strip-prefix
-    uri: lb://gateway
+    uri: lb://scg
     predicates:
     - Path=/strip-prefix/**
     filters: 

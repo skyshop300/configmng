@@ -1,3 +1,5 @@
+spring.cloud.loadbalancer.ribbon: false # disable ribbon. use ReactorLoadBalancerExchangeFilterFunction
+
 spring.cloud.gateway:
   routes: 
   - id: webhook-test1
@@ -265,6 +267,8 @@ spring.cloud.gateway:
           firstBackoff: 500ms   #첫번째 재시도는 실패 후 0.5초 후 수행  
           maxBackoff: 2000ms    #재시도 간격 
           factor: 10            #firstBackoff * (factor^retries)가 재시도 간격임. maxBackoff보다 클 수는 없음.   
+        #exceptions:             # Connect가 안되는 경우에만 retry
+        #- java.net.ConnectException
     metadata:
       connect-timeout: 1000     
       response-timeout: 1000 
@@ -324,9 +328,9 @@ spring.cloud.gateway:
 ---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
-management:
-  endpoint.gateway.enabled: true
-  endpoints.web.exposure.include: gateway 
+#management:
+#  endpoint.gateway.enabled: true
+#  endpoints.web.exposure.include: gateway 
 
 ---
 spring:

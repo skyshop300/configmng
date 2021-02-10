@@ -13,5 +13,3 @@ spring:
       probability: 1.0
   zipkin:
     base-url: http://zipkin:9411
-   
-#management.endpoints.web.exposure.include: prometheus

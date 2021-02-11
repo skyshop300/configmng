@@ -294,7 +294,7 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
     - CircuitBreaker=myCB
     metadata:
-      connect-tinmeout: 5000
+      connect-tinmeout: 5000 
       response-timeout: 5000 
 
 # Dynamic routing using Custom GgatewayFilterFactory

@@ -345,18 +345,10 @@ resilience4j:
   circuitbreaker:
     configs:
         default:
-            slidingWindowSize: 100
-            minimumNumberOfCalls: 5
-            failureRateThreshold: 60
-            waitDurationInOpenState: 10000
-        scg:
             slidingWindowSize: 5
             minimumNumberOfCalls: 2
             failureRateThreshold: 50
             waitDurationInOpenState: 5000 
-    instances:
-      scg:
-        baseConfig: test 
 
 # Circuit Breaker
 spring.cloud.gateway:

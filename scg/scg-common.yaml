@@ -341,10 +341,26 @@ spring:
   zipkin:
     base-url: http://zipkin:9411
 ---
-spring.cloud.gateway:
-  routes:
+resilience4j:
+  circuitbreaker:
+    configs:
+        default:
+            slidingWindowSize: 100
+            minimumNumberOfCalls: 5
+            failureRateThreshold: 60
+            waitDurationInOpenState: 10000
+        scg:
+            slidingWindowSize: 5
+            minimumNumberOfCalls: 2
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5000 
+    instances:
+      scg:
+        baseConfig: test 
 
 # Circuit Breaker
+spring.cloud.gateway:
+  routes:
   - id: consumer-circuit-breaker
     #order: 1dd
     uri: lb://consumer 
@@ -356,20 +372,3 @@ spring.cloud.gateway:
       args: 
         name: myCB 
         fallbackUri: forward:/actuator  
-
-resilience4j:
-  circuitbreaker:
-    configs:
-        default:
-            slidingWindowSize: 100
-            minimumNumberOfCalls: 5
-            failureRateThreshold: 60
-            waitDurationInOpenState: 10000
-        test:
-            slidingWindowSize: 5
-            minimumNumberOfCalls: 2
-            failureRateThreshold: 50
-            waitDurationInOpenState: 5000 
-    instances:
-      scg:
-        baseConfig: test 

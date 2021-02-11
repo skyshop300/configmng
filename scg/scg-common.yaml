@@ -368,8 +368,8 @@ resilience4j:
         test:
             slidingWindowSize: 5
             minimumNumberOfCalls: 2
-            failureRateThreshold: 10
-            waitDurationInOpenState: 5000
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5000 
     instances:
       consumer-circuit-breaker:
         baseConfig: test 

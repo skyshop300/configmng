@@ -307,7 +307,7 @@ spring.cloud.gateway:
     - CircuitBreaker=myCB
     metadata:
       connect-tinmeout: 2000
-      response-timeout: 2s  
+      response-timeout: 2000  
 
 ---
 spring.cloud.gateway:

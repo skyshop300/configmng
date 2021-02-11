@@ -345,7 +345,7 @@ spring:
 spring.cloud.gateway:
   routes:
   - id: consumer-circuit-breaker
-    #order: 1dd
+    #order: 1
     uri: lb://consumer 
     predicates: 
     - Path=/cb/**

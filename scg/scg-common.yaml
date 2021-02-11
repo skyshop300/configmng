@@ -292,7 +292,10 @@ spring.cloud.gateway:
     - Path=/cb/**
     filters: 
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    #- CircuitBreaker=myCB
+    - name: CircuitBreaker
+      args: 
+        name: myCB 
+        fallbackUri: forward:/actuator  
     metadata:
       connect-tinmeout: 5000 
       response-timeout: 5000 

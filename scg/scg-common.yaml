@@ -296,6 +296,7 @@ spring.cloud.gateway:
   #     args: 
   #       order: 10001
 
+
 # Circuit Breaker
   - id: consumer-circuit-breaker
     order: 1
@@ -307,7 +308,7 @@ spring.cloud.gateway:
     - CircuitBreaker=myCB
     metadata:
       connect-tinmeout: 2000
-      response-timeout: 2000  
+      response-timeout: 2000 
 
 ---
 spring.cloud.gateway:

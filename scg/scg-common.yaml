@@ -299,7 +299,7 @@ spring.cloud.gateway:
 
 # Circuit Breaker
   - id: consumer-circuit-breaker
-    order: 1dd
+    #order: 1dd
     uri: lb://consumer 
     predicates: 
     - Path=/cb/**
@@ -308,7 +308,7 @@ spring.cloud.gateway:
     - CircuitBreaker=myCB
     metadata:
       connect-tinmeout: 5000
-      response-timeout: 5000 
+      response-timeout: 5000 s
 ---
 spring.cloud.gateway:
   filter:

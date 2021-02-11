@@ -292,7 +292,7 @@ spring.cloud.gateway:
     - Path=/cb/**
     filters: 
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - CircuitBreaker=myCB
+    #- CircuitBreaker=myCB
     metadata:
       connect-tinmeout: 5000 
       response-timeout: 5000 

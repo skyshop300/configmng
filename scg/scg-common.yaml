@@ -349,7 +349,10 @@ resilience4j:
             minimumNumberOfCalls: 2
             failureRateThreshold: 50
             waitDurationInOpenState: 5000 
-
+    instances:
+      myCB:
+        baseConfig: default 
+        
 # Circuit Breaker
 spring.cloud.gateway:
   routes:

@@ -305,7 +305,6 @@ spring.cloud.gateway:
     filters: 
     - RewritePath=/.*/(?<param>.*), /delay/${param}
     #- CircuitBreaker=myCB
-
 ---
 spring.cloud.gateway:
   filter:

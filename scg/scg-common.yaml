@@ -284,6 +284,19 @@ spring.cloud.gateway:
       connect-timeout: 1000     
       response-timeout: 1000
 
+# Circuit Breaker
+  - id: consumer-circuit-breaker
+    #order: 1dd
+    uri: lb://consumer 
+    predicates: 
+    - Path=/cb/**
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - CircuitBreaker=myCB
+    metadata:
+      connect-tinmeout: 5000
+      response-timeout: 5000 
+
 # Dynamic routing using Custom GgatewayFilterFactory
   # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
   - id: dynamic-routing 
@@ -297,18 +310,6 @@ spring.cloud.gateway:
         order: 10001
 
 
-# Circuit Breaker
-  - id: consumer-circuit-breaker
-    #order: 1dd
-    uri: lb://consumer 
-    predicates: 
-    - Path=/cb/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - CircuitBreaker=myCB
-    metadata:
-      connect-tinmeout: 5000
-      response-timeout: 5000 s
 ---
 spring.cloud.gateway:
   filter:

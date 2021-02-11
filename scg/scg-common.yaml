@@ -299,12 +299,14 @@ spring.cloud.gateway:
 # Circuit Breaker
   - id: consumer-circuit-breaker
     order: 1
-    uri: lb://consumber 
+    uri: lb://consumer 
     predicates: 
     - Path=/cb/**
     filters: 
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
     #- CircuitBreaker=myCB
+    
+
 ---
 spring.cloud.gateway:
   filter:

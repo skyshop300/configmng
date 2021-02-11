@@ -296,9 +296,6 @@ spring.cloud.gateway:
       args: 
         name: myCB 
         fallbackUri: forward:/actuator  
-    metadata:
-      connect-tinmeout: 5000 
-      response-timeout: 5000 
 
 # Dynamic routing using Custom GgatewayFilterFactory
   # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899

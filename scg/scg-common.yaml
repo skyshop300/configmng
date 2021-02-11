@@ -371,5 +371,5 @@ resilience4j:
             failureRateThreshold: 50
             waitDurationInOpenState: 5000 
     instances:
-      consumer-circuit-breaker:
+      scg:
         baseConfig: test 

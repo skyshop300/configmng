@@ -367,7 +367,7 @@ resilience4j:
             waitDurationInOpenState: 10000
         test:
             slidingWindowSize: 5
-            minimumNumberOfCalls: 1
+            minimumNumberOfCalls: 2
             failureRateThreshold: 10
             waitDurationInOpenState: 5000
     instances:

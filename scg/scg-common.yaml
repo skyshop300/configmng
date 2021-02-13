@@ -378,7 +378,7 @@ resilience4j:
     configs:
       default:
         slidingWindowSize: 10
-        minimumNumberOfCalls: 3
+        minimumNumberOfCalls: 10
         failureRateThreshold: 50
         waitDurationInOpenState: 5000 
     instances:

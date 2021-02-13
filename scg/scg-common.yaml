@@ -309,7 +309,7 @@ spring.cloud.gateway:
   # http timeout
   httpclient: 
     connect-timeout: 1000
-    response-timeout: 2000ms   # or 2s
+    response-timeout: 1000ms   # or 2s
   
   # default filters 
   default-filters: 
@@ -384,27 +384,29 @@ spring.cloud.gateway:
       args: 
         name: mycb2
         #fallbackUri: forward:/fallback1
-    metadata:
-      connect-timeout: 3000
-      response-timeout: 3000
 
 # refer: https://resilience4j.readme.io/docs/circuitbreaker
-resilience4j.circuitbreaker:
-  default:
-    # 최근 10개 요청 중 
-    slidingWindowType: COUNT_BASED 
-    slidingWindowSize: 10
-    minimumNumberOfCalls: 5
-    failureRateThreshold: 50
-    permittedNumberOfCallsInHalfOpenState: 2
-    waitDurationInOpenState: 10000
-    slowCallDurationThreshold: 3000
-    slowCallRateThreshold: 100
-  custom:
-    slidingWindowType: COUNT_BASED 
-    slidingWindowSize: 10
-    minimumNumberOfCalls: 1
-    failureRateThreshold: 60
-    waitDurationInOpenState: 10000
-    slowCallDurationThreshold: 3000
-    slowCallRateThreshold: 50
+resilience4j:
+  circuitbreaker:
+    default:
+      # 최근 10개 요청 중 
+      slidingWindowType: COUNT_BASED 
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      failureRateThreshold: 50
+      permittedNumberOfCallsInHalfOpenState: 2
+      waitDurationInOpenState: 10000
+      slowCallDurationThreshold: 3000
+      slowCallRateThreshold: 100
+    custom:
+      slidingWindowType: COUNT_BASED 
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 1
+      failureRateThreshold: 60
+      waitDurationInOpenState: 10000
+      slowCallDurationThreshold: 3000
+      slowCallRateThreshold: 50
+  timeout:
+    default: 5000
+    custom: 3000
+

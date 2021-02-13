@@ -373,6 +373,21 @@ spring.cloud.gateway:
       connect-timeout: 500
       response-timeout: 500
 
+  - id: consumer-circuit-breaker2
+    order: 1
+    uri: lb://consumer 
+    predicates: 
+    - Path=/cb2/**
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: mycb2
+        #fallbackUri: forward:/fallback1
+    metadata:
+      connect-timeout: 500
+      response-timeout: 500
+
 # refer: https://resilience4j.readme.io/docs/circuitbreaker
 resilience4j.circuitbreaker:
   default:

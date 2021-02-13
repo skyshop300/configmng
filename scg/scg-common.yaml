@@ -373,21 +373,37 @@ spring.cloud.gateway:
       connect-timeout: 500
       response-timeout: 500
 
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
-        failureRateThreshold: 50
-        waitDurationInOpenState: 10000 
-    instances:
-      mycb:
-        baseConfig: default 
-      consumer-circuit-breaker:
-        baseConfig: default 
-        minimumNumberOfCalls: 3
-        waitDurationInOpenState: 5000
+# refer: https://resilience4j.readme.io/docs/circuitbreaker
+resilience4j.circuitbreaker:
+  default:
+    # 최근 10개 요청 중 
+    slidingWindowType: COUNT_BASED 
+    slidingWindowSize: 10
+    minimumNumberOfCalls: 5
+    failureRateThreshold: 50
+    permittedNumberOfCallsInHalfOpenState: 2
+    waitDurationInOpenState: 5000
+    slowCallDurationThreshold: 3000
+    slowCallRateThreshold: 100
+  mycb:
+    minimumNumberOfCalls: 2
+    failureRateThreshold: 100
+
+# resilience4j:
+#   circuitbreaker:
+#     configs:
+#       default:
+#         slidingWindowSize: 10
+#         minimumNumberOfCalls: 5
+#         failureRateThreshold: 50
+#         waitDurationInOpenState: 10000 
+#     instances:
+#       mycb:
+#         baseConfig: default 
+#       consumer-circuit-breaker:
+#         baseConfig: default 
+#         minimumNumberOfCalls: 3
+#         waitDurationInOpenState: 5000
 
 #   retry:
 #     configs:

@@ -385,8 +385,8 @@ spring.cloud.gateway:
         name: mycb2
         #fallbackUri: forward:/fallback1
     metadata:
-      connect-timeout: 500
-      response-timeout: 500
+      connect-timeout: 3000
+      response-timeout: 3000
 
 # refer: https://resilience4j.readme.io/docs/circuitbreaker
 resilience4j.circuitbreaker:

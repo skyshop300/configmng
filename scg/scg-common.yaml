@@ -386,7 +386,7 @@ resilience4j.circuitbreaker:
     slowCallDurationThreshold: 3000
     slowCallRateThreshold: 100
   mycb:
-    minimumNumberOfCalls: 2
+    minimumNumberOfCalls: 5
     failureRateThreshold: 100
 
 # resilience4j:

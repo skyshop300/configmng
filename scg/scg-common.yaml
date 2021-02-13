@@ -380,10 +380,15 @@ resilience4j:
         slidingWindowSize: 10
         minimumNumberOfCalls: 5
         failureRateThreshold: 50
-        waitDurationInOpenState: 5000 
+        waitDurationInOpenState: 10000 
     instances:
       mycb:
         baseConfig: default 
+      consumer-circuit-breaker:
+        baseConfig: default 
+        minimumNumberOfCalls: 3
+        waitDurationInOpenState: 5000
+
 #   retry:
 #     configs:
 #       default:

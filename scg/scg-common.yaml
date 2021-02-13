@@ -406,3 +406,5 @@ resilience4j.circuitbreaker:
     minimumNumberOfCalls: 1
     failureRateThreshold: 70
     waitDurationInOpenState: 10000
+    slowCallDurationThreshold: 1000
+    slowCallRateThreshold: 50

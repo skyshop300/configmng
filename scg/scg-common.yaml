@@ -326,19 +326,19 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  # - name: CircuitBreaker
-  #   args: 
-  #     name: defaultCB
-  #     fallbackUri: forward:/actuator 
-  # - name: Retry 
-  #   args:
-  #     retries: 3
-  #     series: 
-  #     methods:
-  #     - GET
-  #     - POST 
-  #     exceptions:
-  #     - java.net.ConnectException 
+  - name: CircuitBreaker
+    args: 
+      name: defaultCB
+      fallbackUri: forward:/actuator 
+  - name: Retry 
+    args:
+      retries: 3
+      series: 
+      methods:
+      - GET
+      - POST 
+      exceptions:
+      - java.net.ConnectException 
 
 ---
 # Enable gateway Actuator: default is enabled

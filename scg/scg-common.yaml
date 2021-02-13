@@ -355,7 +355,7 @@ spring:
   zipkin:
     base-url: http://zipkin:9411
 ---
-Circuit Breaker
+#Circuit Breaker
 spring.cloud.gateway:
   routes:
   - id: consumer-circuit-breaker

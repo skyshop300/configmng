@@ -404,7 +404,7 @@ resilience4j:
       minimumNumberOfCalls: 1
       failureRateThreshold: 60
       waitDurationInOpenState: 10000
-      slowCallDurationThreshold: 3000
+      slowCallDurationThreshold: 1000
       slowCallRateThreshold: 50
   
   # TimeLimiterConfig 없으면, spring.cloud.gateway.routes.metadata.response-timeout 적용됨

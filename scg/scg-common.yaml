@@ -374,8 +374,8 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
-        slidingWindowSize: 5
-        minimumNumberOfCalls: 2
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 3
         failureRateThreshold: 50
         waitDurationInOpenState: 5000 
     instances:

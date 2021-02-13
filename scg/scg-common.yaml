@@ -383,7 +383,7 @@ spring.cloud.gateway:
     - name: CircuitBreaker
       args: 
         name: mycb2
-        #fallbackUri: forward:/fallback1
+        fallbackUri: forward:/fallback
 
 # refer: https://resilience4j.readme.io/docs/circuitbreaker
 resilience4j:
@@ -404,7 +404,7 @@ resilience4j:
       minimumNumberOfCalls: 1
       failureRateThreshold: 60
       waitDurationInOpenState: 10000
-      slowCallDurationThreshold: 1000
+      slowCallDurationThreshold: 1000  # slowCall* 조건에 해당되도 fallback 호출 안됨 
       slowCallRateThreshold: 50
   
   # TimeLimiterConfig 없으면, spring.cloud.gateway.routes.metadata.response-timeout 적용됨

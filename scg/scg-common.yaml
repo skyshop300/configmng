@@ -362,22 +362,12 @@ spring.cloud.gateway:
     uri: lb://consumer 
     predicates: 
     - Path=/cb/**
-    # filters: 
-    # - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    # - name: CircuitBreaker
-    #   args: 
-    #     name: mycb
-    #     fallbackUri: forward:/actuator 
-    # - name: Retry 
-    #   args:
-    #     retries: 3
-    #     series: 
-    #     methods:
-    #     - GET
-    #     - POST 
-    #     exceptions:
-    #     - java.net.ConnectException 
-
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: mycb
+        fallbackUri: forward:/actuator 
 
 resilience4j:
   circuitbreaker:

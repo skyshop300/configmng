@@ -354,7 +354,17 @@ spring.cloud.gateway:
     - name: CircuitBreaker
       args: 
         name: mycb
-        fallbackUri: forward:/actuator  
+        fallbackUri: forward:/actuator 
+    - name: Retry 
+      args:
+        retries: 3
+        series: 
+        methods:
+        - GET
+        - POST 
+        exceptions:
+        - java.net.ConnectException 
+        
 
 resilience4j:
   circuitbreaker:

@@ -326,19 +326,19 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  - name: CircuitBreaker
-    args: 
-      name: defaultCB
-      fallbackUri: forward:/actuator 
-  - name: Retry 
-    args:
-      retries: 3
-      series: 
-      methods:
-      - GET
-      - POST 
-      exceptions:
-      - java.net.ConnectException 
+  # - name: CircuitBreaker
+  #   args: 
+  #     name: defaultCB
+  #     fallbackUri: forward:/actuator 
+  # - name: Retry 
+  #   args:
+  #     retries: 3
+  #     series: 
+  #     methods:
+  #     - GET
+  #     - POST 
+  #     exceptions:
+  #     - java.net.ConnectException 
 
 ---
 # Enable gateway Actuator: default is enabled
@@ -356,38 +356,38 @@ spring:
     base-url: http://zipkin:9411
 ---
 # Circuit Breaker
-spring.cloud.gateway:
-  routes:
-  - id: consumer-circuit-breaker
-    uri: lb://consumer 
-    predicates: 
-    - Path=/cb/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: mycb
-        fallbackUri: forward:/actuator 
+# spring.cloud.gateway:
+#   routes:
+#   - id: consumer-circuit-breaker
+#     uri: lb://consumer 
+#     predicates: 
+#     - Path=/cb/**
+#     filters: 
+#     - RewritePath=/.*/(?<param>.*), /delay/${param} 
+#     - name: CircuitBreaker
+#       args: 
+#         name: mycb
+#         fallbackUri: forward:/actuator 
 
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        slidingWindowSize: 5
-        minimumNumberOfCalls: 2
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5000 
-    instances:
-      mycb:
-        baseConfig: default 
-  retry:
-    configs:
-      default:
-        maxRetryAttempts: 5
-        waitDuration: 100 
-        retryException:
-        - ProcessingException.class 
-        - HttpHostConnectException.class 
-      instances:
-        mycb: 
-          maxRetryAttempts: 3
+# resilience4j:
+#   circuitbreaker:
+#     configs:
+#       default:
+#         slidingWindowSize: 5
+#         minimumNumberOfCalls: 2
+#         failureRateThreshold: 50
+#         waitDurationInOpenState: 5000 
+#     instances:
+#       mycb:
+#         baseConfig: default 
+#   retry:
+#     configs:
+#       default:
+#         maxRetryAttempts: 5
+#         waitDuration: 100 
+#         retryException:
+#         - ProcessingException.class 
+#         - HttpHostConnectException.class 
+#       instances:
+#         mycb: 
+#           maxRetryAttempts: 3

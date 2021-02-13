@@ -368,7 +368,7 @@ spring.cloud.gateway:
     - name: CircuitBreaker
       args: 
         name: mycb
-        fallbackUri: forward:/fallback
+        fallbackUri: forward:/fallback   # fallback은 Circuit 상태와 상관 없이, fail조건에 해당된 경우 호출됨 
     metadata:
       connect-timeout: 3000
       response-timeout: 3000
@@ -391,14 +391,14 @@ resilience4j:
     default:
       # 최근 10개 요청 중 (3초 초과한 비율이 100%) 또는 (http timeout시간 초과한 비율이 50%)일때 Circuit OPEN
       # 단, 5개 요청까지는 OPEN하지 않음 
-      slidingWindowType: COUNT_BASED 
-      slidingWindowSize: 10
-      minimumNumberOfCalls: 5
-      failureRateThreshold: 50
-      waitDurationInOpenState: 30000
-      slowCallDurationThreshold: 3000
-      slowCallRateThreshold: 100
-      permittedNumberOfCallsInHalfOpenState: 2
+      slidingWindowType: COUNT_BASED           # default: COUNT_BASED 
+      slidingWindowSize: 10                    # default: 100
+      minimumNumberOfCalls: 5                  # default: 100
+      failureRateThreshold: 50                 # default: 50
+      waitDurationInOpenState: 30000           # default: 60000
+      slowCallDurationThreshold: 3000          # default: 60000
+      slowCallRateThreshold: 100               # default: 100
+      permittedNumberOfCallsInHalfOpenState: 5  #Circuit 상태가 HALF-OPEN일때 허용되는 요청 수. default: 10. 별로 안 중요
 
     custom:
       slidingWindowType: COUNT_BASED 

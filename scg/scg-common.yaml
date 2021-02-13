@@ -356,3 +356,15 @@ spring.cloud.gateway:
         name: mycb
         fallbackUri: forward:/actuator  
 
+resilience4j:
+  circuitbreaker:
+    configs:
+        default:
+            slidingWindowSize: 5
+            minimumNumberOfCalls: 2
+            failureRateThreshold: 50
+            waitDurationInOpenState: 5000 
+    instances:
+      mycb:
+        baseConfig: default 
+

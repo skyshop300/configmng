@@ -389,15 +389,17 @@ spring.cloud.gateway:
 resilience4j:
   circuitbreaker:
     default:
-      # 최근 10개 요청 중 
+      # 최근 10개 요청 중 (3초 초과한 비율이 100%) 또는 (http timeout시간 초과한 비율이 50%)일때 Circuit OPEN
+      # 단, 5개 요청까지는 OPEN하지 않음 
       slidingWindowType: COUNT_BASED 
       slidingWindowSize: 10
       minimumNumberOfCalls: 5
       failureRateThreshold: 50
-      permittedNumberOfCallsInHalfOpenState: 2
       waitDurationInOpenState: 30000
       slowCallDurationThreshold: 3000
       slowCallRateThreshold: 100
+      permittedNumberOfCallsInHalfOpenState: 2
+
     custom:
       slidingWindowType: COUNT_BASED 
       slidingWindowSize: 10
@@ -407,6 +409,7 @@ resilience4j:
       slowCallDurationThreshold: 1000  # slowCall* 조건에 해당되도 fallback 호출 안됨 
       slowCallRateThreshold: 50
   
+  #== http timeout 정책
   # TimeLimiterConfig 없으면, spring.cloud.gateway.routes.metadata.response-timeout 적용됨
   # metadata.response-timeout 없으면, spring.cloud.gateway.http-client.response-timeout 적용됨 
   timeout: 

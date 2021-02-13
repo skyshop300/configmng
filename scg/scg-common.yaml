@@ -367,7 +367,7 @@ spring.cloud.gateway:
     - RewritePath=/.*/(?<param>.*), /delay/${param} 
     - name: CircuitBreaker
       args: 
-        name: mycb
+        name: mycb2
         fallbackUri: forward:/fallback
     metadata:
       connect-timeout: 500
@@ -382,7 +382,7 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 5000 
     instances:
-      mycb:
+      mycb2:
         baseConfig: default 
 #   retry:
 #     configs:

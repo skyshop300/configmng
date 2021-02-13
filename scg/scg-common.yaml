@@ -380,4 +380,14 @@ resilience4j:
     instances:
       mycb:
         baseConfig: default 
-
+  retry:
+    configs:
+      default:
+        maxRetryAttempts: 5
+        waitDuration: 100 
+        retryException:
+        - ProcessingException.class 
+        - HttpHostConnectException.class 
+      instances:
+        mycb: 
+          maxRetryAttempts: 3

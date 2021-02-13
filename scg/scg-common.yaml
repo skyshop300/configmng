@@ -396,7 +396,7 @@ resilience4j:
       minimumNumberOfCalls: 5                  # default: 100
       failureRateThreshold: 50                 # default: 50
       waitDurationInOpenState: 30000           # default: 60000
-      slowCallDurationThreshold: 3000          # default: 60000
+      slowCallDurationThreshold: 1000          # default: 60000
       slowCallRateThreshold: 100               # default: 100
       permittedNumberOfCallsInHalfOpenState: 5  #Circuit 상태가 HALF-OPEN일때 허용되는 요청 수. default: 10. 별로 안 중요
 

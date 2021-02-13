@@ -368,7 +368,7 @@ spring.cloud.gateway:
     - name: CircuitBreaker
       args: 
         name: mycb
-        #fallbackUri: forward:/fallback1
+        fallbackUri: forward:/fallback
     metadata:
       connect-timeout: 3000
       response-timeout: 3000

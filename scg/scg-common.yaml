@@ -408,5 +408,5 @@ resilience4j:
       slowCallRateThreshold: 50
   timeout:
     default: 5000
-    custom: 3000
+    custom: 1000
 

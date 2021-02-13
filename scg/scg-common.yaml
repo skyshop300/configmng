@@ -355,19 +355,19 @@ spring:
   zipkin:
     base-url: http://zipkin:9411
 ---
-# Circuit Breaker
-# spring.cloud.gateway:
-#   routes:
-#   - id: consumer-circuit-breaker
-#     uri: lb://consumer 
-#     predicates: 
-#     - Path=/cb/**
-#     filters: 
-#     - RewritePath=/.*/(?<param>.*), /delay/${param} 
-#     - name: CircuitBreaker
-#       args: 
-#         name: mycb
-#         fallbackUri: forward:/actuator 
+Circuit Breaker
+spring.cloud.gateway:
+  routes:
+  - id: consumer-circuit-breaker
+    uri: lb://consumer 
+    predicates: 
+    - Path=/cb/**
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: mycb
+        fallbackUri: forward:/actuator 
 
 resilience4j:
   circuitbreaker:

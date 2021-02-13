@@ -370,8 +370,8 @@ spring.cloud.gateway:
         name: mycb
         #fallbackUri: forward:/fallback1
     metadata:
-      connect-timeout: 500
-      response-timeout: 500
+      connect-timeout: 3000
+      response-timeout: 3000
 
   - id: consumer-circuit-breaker2
     order: 1

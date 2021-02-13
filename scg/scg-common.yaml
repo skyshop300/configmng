@@ -326,6 +326,20 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
+  - name: CircuitBreaker
+    args: 
+      name: defaultCB
+      fallbackUri: forward:/actuator 
+  - name: Retry 
+    args:
+      retries: 3
+      series: 
+      methods:
+      - GET
+      - POST 
+      exceptions:
+      - java.net.ConnectException 
+
 ---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
@@ -345,26 +359,25 @@ spring:
 spring.cloud.gateway:
   routes:
   - id: consumer-circuit-breaker
-    #order: 1
     uri: lb://consumer 
     predicates: 
     - Path=/cb/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: mycb
-        fallbackUri: forward:/actuator 
-    - name: Retry 
-      args:
-        retries: 3
-        series: 
-        methods:
-        - GET
-        - POST 
-        exceptions:
-        - java.net.ConnectException 
-        
+    # filters: 
+    # - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    # - name: CircuitBreaker
+    #   args: 
+    #     name: mycb
+    #     fallbackUri: forward:/actuator 
+    # - name: Retry 
+    #   args:
+    #     retries: 3
+    #     series: 
+    #     methods:
+    #     - GET
+    #     - POST 
+    #     exceptions:
+    #     - java.net.ConnectException 
+
 
 resilience4j:
   circuitbreaker:

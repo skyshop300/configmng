@@ -367,7 +367,7 @@ spring.cloud.gateway:
     - name: CircuitBreaker
       args: 
         name: mycb
-        fallbackUri: forward:/actuator 
+        fallbackUri: forward:/fallback
 
 resilience4j:
   circuitbreaker:

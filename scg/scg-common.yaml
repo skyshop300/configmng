@@ -296,6 +296,33 @@ spring.cloud.gateway:
       args: 
         order: 10001
 
+#Circuit Breaker
+  - id: consumer-circuit-breaker
+    order: 1
+    uri: lb://consumer 
+    predicates: 
+    - Path=/cb/**
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: mycb
+        fallbackUri: forward:/fallback   # fallback은 Circuit 상태와 상관 없이, fail조건에 해당된 경우 호출됨 
+    metadata:
+      connect-timeout: 3000
+      response-timeout: 3000
+
+  - id: consumer-circuit-breaker2
+    order: 5
+    uri: lb://consumer 
+    predicates: 
+    - Path=/cb2/**
+    filters: 
+    - RewritePath=/.*/(?<param>.*), /delay/${param} 
+    - name: CircuitBreaker
+      args: 
+        name: mycb2
+        fallbackUri: forward:/fallback
 
 ---
 spring.cloud.gateway:
@@ -326,10 +353,10 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  # - name: CircuitBreaker
-  #   args: 
-  #     name: defaultCB
-  #     fallbackUri: forward:/fallback
+  - name: CircuitBreaker
+    args: 
+      name: defaultCB
+      fallbackUri: forward:/fallback
   # - name: Retry 
   #   args:
   #     retries: 3
@@ -355,36 +382,7 @@ spring:
   zipkin:
     base-url: http://zipkin:9411
 ---
-#Circuit Breaker
-spring.cloud.gateway:
-  routes:
-  - id: consumer-circuit-breaker
-    order: 1
-    uri: lb://consumer 
-    predicates: 
-    - Path=/cb/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: mycb
-        fallbackUri: forward:/fallback   # fallback은 Circuit 상태와 상관 없이, fail조건에 해당된 경우 호출됨 
-    metadata:
-      connect-timeout: 3000
-      response-timeout: 3000
-
-  - id: consumer-circuit-breaker2
-    order: 1
-    uri: lb://consumer 
-    predicates: 
-    - Path=/cb2/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: mycb2
-        fallbackUri: forward:/fallback
-
+# Resilience4J configuration for Resilience4jConfig class
 # refer: https://resilience4j.readme.io/docs/circuitbreaker
 resilience4j:
   circuitbreaker:

@@ -401,8 +401,10 @@ resilience4j.circuitbreaker:
     slowCallDurationThreshold: 3000
     slowCallRateThreshold: 100
   custom:
-    minimumNumberOfCalls: 5
-    failureRateThreshold: 100
+    slidingWindowType: TIME_BASED 
+    slidingWindowSize: 30
+    minimumNumberOfCalls: 1
+    failureRateThreshold: 70
 
 # resilience4j:
 #   circuitbreaker:

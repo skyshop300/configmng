@@ -329,7 +329,7 @@ spring.cloud.gateway:
   - name: CircuitBreaker
     args: 
       name: defaultCB
-      fallbackUri: forward:/actuator 
+      fallbackUri: forward:/fallback
   - name: Retry 
     args:
       retries: 3

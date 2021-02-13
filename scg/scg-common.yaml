@@ -405,7 +405,7 @@ resilience4j.circuitbreaker:
     slidingWindowSize: 30
     minimumNumberOfCalls: 1
     failureRateThreshold: 70
-    waitDurationInOpenState: 5000
+    waitDurationInOpenState: 10000
 
 # resilience4j:
 #   circuitbreaker:

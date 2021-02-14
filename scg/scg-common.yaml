@@ -315,12 +315,16 @@ spring.cloud.gateway:
   - id: dynamic-routing 
     uri: lb://tbd
     predicates: 
-    - Path=/*/**
+    - Path=/{service}/**
     filters: 
     - StripPrefix=1
     - name: UriHostPlaceholderFilter
       args: 
         order: 10001
+    - name: CircuitBreaker
+      args: 
+        name: defaultCB-{service}
+        fallbackUri: forward:/fallback     
 
 ---
 spring.cloud.gateway:
@@ -351,10 +355,6 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  - name: CircuitBreaker
-    args: 
-      name: defaultCB
-      fallbackUri: forward:/fallback
 ---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints

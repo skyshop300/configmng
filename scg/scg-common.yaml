@@ -335,8 +335,8 @@ spring.cloud.gateway:
 
   # http timeout
   httpclient: 
-    connect-timeout: 1000
-    response-timeout: 1000ms   # or 2s
+    connect-timeout: 3000
+    response-timeout: 3000ms   # or 3s
   
   # default filters 
   default-filters: 
@@ -395,7 +395,7 @@ resilience4j:
       failureRateThreshold: 50                 # default: 50
       waitDurationInOpenState: 30000           # default: 60000
       slowCallDurationThreshold: 1000          # default: 60000
-      slowCallRateThreshold: 100               # default: 100
+      slowCallRateThreshold: 70                # default: 100
       permittedNumberOfCallsInHalfOpenState: 5  #Circuit 상태가 HALF-OPEN일때 허용되는 요청 수. default: 10. 별로 안 중요
 
     custom:

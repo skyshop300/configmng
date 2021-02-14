@@ -323,7 +323,7 @@ spring.cloud.gateway:
         order: 10001
     - name: CircuitBreaker
       args: 
-        name: defaultCB-{service}
+        name: defaultCB-${service}
         fallbackUri: forward:/fallback     
 
 ---

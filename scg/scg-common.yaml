@@ -284,21 +284,8 @@ spring.cloud.gateway:
       connect-timeout: 1000     
       response-timeout: 1000
 
-# Dynamic routing using Custom GgatewayFilterFactory
-  # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
-  - id: dynamic-routing 
-    uri: lb://tbd
-    predicates: 
-    - Path=/*/**
-    filters: 
-    - StripPrefix=1
-    - name: UriHostPlaceholderFilter
-      args: 
-        order: 10001
-
 #Circuit Breaker
   - id: consumer-circuit-breaker
-    order: 1
     uri: lb://consumer 
     predicates: 
     - Path=/cb/**
@@ -313,7 +300,6 @@ spring.cloud.gateway:
       response-timeout: 3000
 
   - id: consumer-circuit-breaker2
-    order: 5
     uri: lb://consumer 
     predicates: 
     - Path=/cb2/**
@@ -323,6 +309,18 @@ spring.cloud.gateway:
       args: 
         name: mycb2
         fallbackUri: forward:/fallback
+
+# Dynamic routing using Custom GgatewayFilterFactory
+  # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
+  - id: dynamic-routing 
+    uri: lb://tbd
+    predicates: 
+    - Path=/*/**
+    filters: 
+    - StripPrefix=1
+    - name: UriHostPlaceholderFilter
+      args: 
+        order: 10001
 
 ---
 spring.cloud.gateway:

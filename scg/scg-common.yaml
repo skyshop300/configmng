@@ -299,17 +299,6 @@ spring.cloud.gateway:
       connect-timeout: 1000
       response-timeout: 1000
 
-  - id: consumer-circuit-breaker2
-    uri: lb://consumer 
-    predicates: 
-    - Path=/cb2/**
-    filters: 
-    - RewritePath=/.*/(?<param>.*), /delay/${param} 
-    - name: CircuitBreaker
-      args: 
-        name: mycb2
-        fallbackUri: forward:/fallback
-
 # Dynamic routing using Custom GgatewayFilterFactory
   # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899
   - id: dynamic-routing 
@@ -350,10 +339,10 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  - name: CircuitBreaker
-    args: 
-      name: defaultCB
-      fallbackUri: forward:/fallback     
+  # - name: CircuitBreaker
+  #   args: 
+  #     name: defaultCB
+  #     fallbackUri: forward:/fallback     
 
 ---
 # Enable gateway Actuator: default is enabled

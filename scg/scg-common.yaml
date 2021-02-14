@@ -321,11 +321,6 @@ spring.cloud.gateway:
     - name: UriHostPlaceholderFilter
       args: 
         order: 10001
-    - name: CircuitBreaker
-      args: 
-        name: defaultCB
-        fallbackUri: forward:/fallback     
-
 ---
 spring.cloud.gateway:
   filter:
@@ -354,6 +349,11 @@ spring.cloud.gateway:
     args: 
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
+
+  - name: CircuitBreaker
+    args: 
+      name: defaultCB
+      fallbackUri: forward:/fallback     
 
 ---
 # Enable gateway Actuator: default is enabled

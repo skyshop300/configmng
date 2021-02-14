@@ -355,16 +355,6 @@ spring.cloud.gateway:
     args: 
       name: defaultCB
       fallbackUri: forward:/fallback
-  # - name: Retry 
-  #   args:
-  #     retries: 3
-  #     series: 
-  #     methods:
-  #     - GET
-  #     - POST 
-  #     exceptions:
-  #     - java.net.ConnectException 
-
 ---
 # Enable gateway Actuator: default is enabled
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
@@ -385,8 +375,9 @@ spring:
 resilience4j:
   circuitbreaker:
     default:
-      # 최근 10개 요청 중 (3초 초과한 비율이 100%) 또는 (http timeout시간 초과한 비율이 50%)일때 Circuit OPEN
-      # 단, 5개 요청까지는 OPEN하지 않음 
+      # 최근 10개 요청 중 (1초 초과한 비율이 70%) 또는 (http timeout시간 초과한 비율이 50%)일때 Circuit OPEN
+      # 단, 5개 요청까지는 OPEN하지 않음. http timeout정책은 resilience.circuitbreaker.timeout 참조 
+      # slowCallDurationThreshold값은 http timeout시간보다 작아야 제대로 동작함. 크면, timeout이 먼저 발생하므로 의미가 없음.
       slidingWindowType: COUNT_BASED           # default: COUNT_BASED 
       slidingWindowSize: 10                    # default: 100
       minimumNumberOfCalls: 5                  # default: 100

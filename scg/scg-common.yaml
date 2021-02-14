@@ -315,7 +315,7 @@ spring.cloud.gateway:
   - id: dynamic-routing 
     uri: lb://tbd
     predicates: 
-    - Path=/{service}/**
+    - Path=/*/**
     filters: 
     - StripPrefix=1
     - name: UriHostPlaceholderFilter
@@ -323,7 +323,7 @@ spring.cloud.gateway:
         order: 10001
     - name: CircuitBreaker
       args: 
-        name: defaultCB-${service}
+        name: defaultCB
         fallbackUri: forward:/fallback     
 
 ---

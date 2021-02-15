@@ -390,4 +390,3 @@ resilience4j:
   timeout: 
     default: 2500
     custom: 2000        
-

@@ -339,10 +339,10 @@ spring.cloud.gateway:
       baseMessage: POST GATEWAYFILTER FACTORY
       logging: true 
 
-  # - name: CircuitBreaker
-  #   args: 
-  #     name: defaultCB
-  #     fallbackUri: forward:/fallback     
+  - name: CircuitBreaker
+    args: 
+      name: defaultCB
+      fallbackUri: forward:/fallback     
 
 ---
 # Enable gateway Actuator: default is enabled
@@ -388,6 +388,6 @@ resilience4j:
   # TimeLimiterConfig 없으면, spring.cloud.gateway.routes.metadata.response-timeout 적용됨
   # metadata.response-timeout 없으면, spring.cloud.gateway.http-client.response-timeout 적용됨 
   timeout: 
-    default: 5000
+    default: 2500
     custom: 2000        
 

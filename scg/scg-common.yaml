@@ -378,7 +378,7 @@ resilience4j:
     custom:
       slidingWindowType: COUNT_BASED 
       slidingWindowSize: 10
-      minimumNumberOfCalls: 2
+      minimumNumberOfCalls: 5
       failureRateThreshold: 60
       waitDurationInOpenState: 10000
       slowCallDurationThreshold: 1000  # slowCall* 조건에 해당되도 fallback 호출 안됨 

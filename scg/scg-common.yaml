@@ -349,9 +349,7 @@ spring.cloud.gateway:
 # gateway endpoints: https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#recap-the-list-of-all-endpoints
 management:
   endpoint.gateway.enabled: true
-  endpoint.restart.enabled: true
-#  endpoints.web.exposure.include: gateway 
-
+  #endpoint.restart.enabled: true
 ---
 spring:
   sleuth: 

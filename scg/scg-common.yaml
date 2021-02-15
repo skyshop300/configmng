@@ -296,8 +296,8 @@ spring.cloud.gateway:
         name: mycb
         fallbackUri: forward:/fallback    # fallback은 Circuit 상태와 상관 없이, fail조건에 해당된 경우 호출됨 
     metadata:
-      connect-timeout: 1000
-      response-timeout: 1000
+      connect-timeout: 2500
+      response-timeout: 2500
 
 # Dynamic routing using Custom GgatewayFilterFactory
   # ref: https://github.com/spring-cloud/spring-cloud-gateway/issues/608#issuecomment-431852899

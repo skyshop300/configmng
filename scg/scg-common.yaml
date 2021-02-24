@@ -1,4 +1,4 @@
-spring.cloud.loadbalancer.ribbon: false # disable ribbon. use ReactorLoadBalancerExchangeFilterFunction
+spring.cloud.loadbalancer.ribbon.enabled: false # disable ribbon. use ReactorLoadBalancerExchangeFilterFunction
 
 spring.cloud.gateway:
   routes: 
